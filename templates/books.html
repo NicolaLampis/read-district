@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for review in reviews %}
+        {{ review.title }} <br>
+        {{ review.author }} <br>
+        {{ review.cover_img }} <br>
+        {{ review.text_review }} <br>
+        {{ review.genre_name }} <br>
+        {{ review.comments }} <br>
+    {% endfor %}
+</body>
+</html>
