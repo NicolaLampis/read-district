@@ -21,7 +21,9 @@
         {% for review in reviews %}
             {{ review.title }} <br>
             {{ review.author }} <br>
-            {{ review.cover_img }} <br>
+            <div id="book-cover-img" class="col s12 m6">
+                <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
+            </div> 
             {{ review.text_review }} <br>
             {{ review.genre_name }} <br>
             {{ review.comments }} <br>
