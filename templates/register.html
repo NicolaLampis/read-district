@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align text-shadow">Register</h3>
+
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="">
+            <div class="card-panel">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons">person</i>
+                        <input id="username" name="username" type="text" class="validate" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons">lock_outline</i>
+                        <input id="password" name="password" type="password" class="validate" required>
+                        <label for="username">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons">mail_outline</i>
+                        <input id="email" name="email" type="email" class="validate" required>
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="col btn-large light-blue" type="submit">
+                        Register <i class="material-icons">check_circle</i>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}

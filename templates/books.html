@@ -1,39 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Community of readers, share book's reviews and recommendations" />
-    <meta name="keywords" content="book review, book recommendation, discover book, book" />
-    <meta name="author" content="Nicola Lampis" />
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png"/>
-    <!-- CDN Materialize, Font-awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
-    <title>Read District</title>
-</head>
-<body>
-    {% block styles %}
+{% extends "base.html" %}
+{% block content %}
     
-        {% for review in reviews %}
-            {{ review.title }} <br>
-            {{ review.author }} <br>
-            <div id="book-cover-img" class="col s12 m6">
-                <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
-            </div> 
-            {{ review.text_review }} <br>
-            {{ review.genre_name }} <br>
-            {{ review.comments }} <br>
-        {% endfor %}
+    {% for review in reviews %}
+        {{ review.title }} <br>
+        {{ review.author }} <br>
+        <div id="book-cover-img" class="col s12 m6">
+            <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
+        </div> 
+        {{ review.text_review }} <br>
+        {{ review.genre_name }} <br>
+        {{ review.comments }} <br>
+    {% endfor %}
 
-    {% endblock %}
-
-    <!-- Materialize - compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    {% block scripts %}
-    {% endblock %}    
-</body>
-</html>
+{% endblock %}

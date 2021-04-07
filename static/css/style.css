@@ -3,16 +3,18 @@
 body {
     margin: 0px;
     padding: 0px;
-    background: linear-gradient(135deg, rgba(208,210,203,1) 0%, rgba(240,245,246,1) 30%, rgba(201,208,210,1) 100%);
+    background: linear-gradient(135deg, rgba(210,210,205,1) 0%, rgba(244,245,245,1) 30%, rgba(202,210,210,1) 100%);
     font-family: "Crimson Pro", sans-serif;
     color: rgb(17, 18, 19);
+    height: 100vh;
 }
 
+/* -- Cover image of the books -- */
 #book-cover-img img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 300px;
+    
     height: 460px;
 }
 
@@ -22,7 +24,7 @@ a.brand-logo {
 }
 
 .nav-wrapper, .sidenav {
-    background-color: #D0D7DD;    
+    background-color: rgba(220,220,220,1);    
 }
 
 .nav-wrapper a, 
@@ -34,3 +36,12 @@ a.brand-logo {
 
 
 /* -- VVVVV -- */
+.card-panel {
+    background-color: rgba(244,245,245,1);
+}
+
+.text-shadow {
+    text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* -- media queries -- */
