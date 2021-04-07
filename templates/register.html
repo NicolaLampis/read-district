@@ -4,38 +4,41 @@
     <h3 class="center-align text-shadow">Register</h3>
 
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
             <div class="card-panel">
+                <!-- username -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons">person</i>
+                        <i class="material-icons prefix">person</i>
                         <input id="username" name="username" type="text" class="validate" required>
                         <label for="username">Username</label>
                     </div>
                 </div>
+                <!-- password -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons">lock_outline</i>
+                        <i class="material-icons prefix">lock_outline</i>
                         <input id="password" name="password" type="password" class="validate" required>
                         <label for="username">Password</label>
                     </div>
                 </div>
+                <!-- email -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons">mail_outline</i>
+                        <i class="material-icons prefix">mail_outline</i>
                         <input id="email" name="email" type="email" class="validate" required>
                         <label for="email">Email</label>
                     </div>
                 </div>
+                <!-- submit button -->
                 <div class="row">
-                    <button class="col btn-large light-blue" type="submit">
-                        Register <i class="material-icons">check_circle</i>
+                    <button class="col s12 btn-large blue" type="submit">
+                        Register <i class="material-icons left">check_circle</i>
                     </button>
                 </div>
 
             </div>
         </form>
     </div>
-
 
 {% endblock %}

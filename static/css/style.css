@@ -44,4 +44,16 @@ a.brand-logo {
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.flash-message {
+    color: white;
+    font-weight: 600;
+    width: calc(100% - 30px);
+    height: 50px;
+    background-color: rgb(40, 75, 90);    
+}
+
+.flash-message h4 {
+    line-height: 1.5;
+}
+
 /* -- media queries -- */
