@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align text-shadow">Log In</h3>
+
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+            <div class="card-panel">
+                <!-- username -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">person</i>
+                        <input id="username" name="username" type="text" class="validate" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <!-- password -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">lock_outline</i>
+                        <input id="password" name="password" type="password" class="validate" required>
+                        <label for="username">Password</label>
+                    </div>
+                </div>
+                
+                <!-- login button -->
+                <div class="row">
+                    <button class="col s12 btn-large blue" type="submit">
+                        Log In <i class="material-icons left">check_circle</i>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -57,3 +57,9 @@ a.brand-logo {
 }
 
 /* -- media queries -- */
+@media screen and (max-width: 992px) {
+    a.brand-logo {
+        padding-left: 0px;
+        font-size: 25px;
+    }
+}
