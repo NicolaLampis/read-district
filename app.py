@@ -76,7 +76,7 @@ def profile(username):
     # grab the session user's username from the database
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    # if session cookies are present in the browser 
+    # if session cookies are present in the browser
     # you have access to the profile
     if session["user"]:
         return render_template("profile.html", username=username)
@@ -106,13 +106,26 @@ def add_review():
         }
         mongo.db.reviews.insert_one(review)
         flash("Review Successfully Added")
-        return redirect(url_for("get_books"))    
+        return redirect(url_for("get_books"))
     return render_template("add_review.html")
 
 
-
-    return render_template("add_review.html")
-
+@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+def edit_review(review_id):
+    if request.method == "POST":
+        submit = {
+            "title": request.form.get("title"),
+            "author": request.form.get("author"),
+            "cover_img": request.form.get("cover_img"),
+            "n_of_pages": request.form.get("n_of_pages"),
+            "text_review": request.form.get("text_review"),
+            "genre_name": request.form.get("genre_name"),
+            "created_by": session["user"]
+        }
+        mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
+        flash("Review Successfully Updated")
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})    
+    return render_template("edit_review.html", review=review)
 
 
 if __name__ == "__main__":

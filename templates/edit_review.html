@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align text-shadow">Edit Book Review</h3>
+
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_review') }}">
+            <div class="card-panel">
+                <!-- title -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">book</i>
+                        <input id="title" name="title" type="text" class="validate"
+                            minlength="4" maxlength="80" required>
+                        <label for="title">Title</label>
+                    </div>
+                </div>
+                <!-- author -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">person</i>
+                        <input id="author" name="author" type="text" class="validate"
+                            minlength="4" maxlength="40" required>
+                        <label for="author">Author</label>
+                    </div>
+                </div>
+                <!-- number of pages -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">horizontal_split</i>
+                        <input id="n_of_pages" name="n_of_pages" type="number"
+                            min="1" max="1000" class="validate" required>
+                        <label for="n_of_pages">Number of Pages</label>
+                    </div>
+                </div>
+                <!-- text review -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">rate_review</i>
+                        <textarea id="text_review" name="text_review" minlength="100"
+                            maxlength="900" class="materialize-textarea validate" required></textarea>
+                        <label for="text_review">Review this book</label>
+                    </div>
+                </div>
+                <!-- genre --> 
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">inventory</i>
+                        <select id="genre_name" name="genre_name" class="validate" required>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Mystery">Mystery</option>
+                        </select>
+                        <label for="genre_name">Select Genre</label>
+                    </div>
+                </div>
+                <!-- image book cover -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">image</i>
+                        <input id="cover_img" name="cover_img" type="text" class="validate" required>
+                        <label for="cover_img">Insert Book Cover URL</label>
+                    </div>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <a href="{{ url_for('get_books') }}" class="btn-large red">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
+                    <button class="btn-large blue" type="submit">
+                        Submit Review <i class="material-icons left">check_circle</i>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
