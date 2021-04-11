@@ -1,15 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
+    <h3 class="center-align text-shadow">Book Reviews</h3>          
+
+    <div class="row">
+        {% for review in reviews %} 
+        <div class="col s12 m6 l4 xl3">
+            <div class="card">                     
+                <div class="card-image" id="book-cover-img">                    
+                    <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
+                    <a href="#" class="btn-floating btn-large halfway-fab red"><i class="material-icons">library_books</i></a>                       
+                </div>
+                <div class="card-content">
+                    <h5>{{ review.title }}</h5>
+                    <p>{{ review.author }}</p>                        
+                    <p>{{ review.genre_name }}</p>
+                </div> 
+            </div>
+        </div>
+        {% endfor %}
+    </div>       
     
-    {% for review in reviews %}
-        {{ review.title }} <br>
-        {{ review.author }} <br>
-        <div id="book-cover-img" class="col s12 m6">
-            <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
-        </div> 
-        {{ review.text_review }} <br>
-        {{ review.genre_name }} <br>
-        {{ review.comments }} <br>
-    {% endfor %}
 
 {% endblock %}
