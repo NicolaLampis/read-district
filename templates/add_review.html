@@ -11,7 +11,7 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix">book</i>
                         <input id="title" name="title" type="text" class="validate"
-                            minlength="4" maxlength="20" required>
+                            minlength="4" maxlength="80" required>
                         <label for="title">Title</label>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix">person</i>
                         <input id="author" name="author" type="text" class="validate"
-                            minlength="4" maxlength="20" required>
+                            minlength="4" maxlength="40" required>
                         <label for="author">Author</label>
                     </div>
                 </div>
@@ -28,7 +28,8 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">horizontal_split</i>
-                        <input id="n_of_pages" name="n_of_pages" type="number" class="validate" required>
+                        <input id="n_of_pages" name="n_of_pages" type="number"
+                            min="1" max="1000" class="validate" required>
                         <label for="n_of_pages">Number of Pages</label>
                     </div>
                 </div>
@@ -36,22 +37,20 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">rate_review</i>
-                        <textarea id="text_review" name="text_review" minlength="50"
-                            maxlength="500" class="materialize-textarea validate" required></textarea>
+                        <textarea id="text_review" name="text_review" minlength="100"
+                            maxlength="900" class="materialize-textarea validate" required></textarea>
                         <label for="text_review">Review this book</label>
                     </div>
                 </div>
-                <!-- genre -->
-                
-
+                <!-- genre --> 
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">inventory</i>
                         <select id="genre_name" name="genre_name" class="validate" required>
                             <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Drama</option>
-                            <option value="2">Fantasy</option>
-                            <option value="3">Mystery</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Mystery">Mystery</option>
                         </select>
                         <label for="genre_name">Select Genre</label>
                     </div>
