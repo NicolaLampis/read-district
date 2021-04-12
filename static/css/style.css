@@ -56,6 +56,19 @@ a.brand-logo {
     line-height: 1.5;
 }
 
+.btn-theme {
+    border-radius: 10px;
+}
+
+#search-bar {
+    border-radius: 20px;
+    padding: 0px;
+}
+
+#clear-search-button {
+    margin-right: 10px;
+}
+
 /* -- media queries -- */
 @media screen and (max-width: 992px) {
     a.brand-logo {
