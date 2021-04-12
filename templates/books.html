@@ -8,7 +8,7 @@
             <div class="card">                     
                 <div class="card-image" id="book-cover-img">                    
                     <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
-                    <a href="#" class="btn-floating btn-large halfway-fab red"><i class="material-icons">library_books</i></a>                       
+                    <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn-large halfway-fab red"><i class="material-icons">library_books</i></a>                       
                 </div>
                 <div class="card-content">
                     <h5>{{ review.title }}</h5>
@@ -16,7 +16,7 @@
                     <p>{{ review.genre_name }}</p>
                     {% if session.user|lower == review.created_by|lower %}
                         <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn-small blue">Edit</a>
-                        <a href="" class="btn-small red">Delete</a>                        
+                        <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn-small red">Delete</a>                        
                     {% endif %}
                 </div> 
             </div>
