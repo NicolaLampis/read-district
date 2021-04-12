@@ -124,7 +124,7 @@ def edit_review(review_id):
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
         flash("Review Successfully Updated")
-    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})    
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     return render_template("edit_review.html", review=review)
 
 
