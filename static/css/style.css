@@ -15,7 +15,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     
-    height: 460px;
+    height: 400px;
 }
 
 /* -- Navbar -- */
@@ -34,7 +34,6 @@ a.brand-logo {
     text-transform: uppercase;
 }
 
-
 /* -- VVVVV -- */
 .card-panel {
     background-color: rgba(244,245,245,1);
@@ -44,11 +43,12 @@ a.brand-logo {
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+
+/* -- Flash messages -- */
 .flash-message {
     color: white;
     font-weight: 600;
-    width: calc(100% - 30px);
-    height: 50px;
+    width: calc(100% - 30px);    
     background-color: rgb(40, 75, 90);    
 }
 
@@ -56,17 +56,33 @@ a.brand-logo {
     line-height: 1.5;
 }
 
+/* -- Buttons -- */
 .btn-theme {
     border-radius: 10px;
 }
 
+.btn-primary-color {
+    background-color: rgb(40, 75, 90);
+}
+
+.btn-action-options {
+    top: 300px;
+}
+
+.btn-action-optionso {
+    top: 230px;
+}
+
+/* -- Search-bar -- */
 #search-bar {
-    border-radius: 20px;
+    border-radius: 38px;
     padding: 0px;
+    height: 76px;
+    margin: 0px 10px;  
 }
 
 #clear-search-button {
-    margin-right: 10px;
+    margin-right: 1vw;
 }
 
 /* -- media queries -- */

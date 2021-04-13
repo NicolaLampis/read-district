@@ -1,20 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3 class="center-align text-shadow">Book Reviews</h3>
-    
+    <h3 class="center-align text-shadow">Book Reviews</h3>   
+    <!--  Search bar  -->
     <div class="row card-panel" id="search-bar">
         <form action="{{ url_for('search') }}" method="post" class="col s12 l10 offset-l1">
             <div class="row valign-wrapper center-align">
                 <div class="input-field col s6 m8 l9 truncate">
                     <i class="material-icons prefix">search</i>
                     <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                    <label for="query">Search Book Review</label>
-
-                    
+                    <label for="query">Search Book Review</label>                    
                 </div>
                 <div class="col s6 m4 l3">
                     <a href="{{ url_for('get_books') }}" class="btn btn-theme red waves-effect waves-light" id="clear-search-button"><i class="material-icons">close</i></a>
-                    <button type="submit" class="blue btn btn-theme waves-effect waves-light">
+                    <button type="submit" class="btn btn-theme btn-primary-color waves-effect waves-light">
                         <i class="material-icons">search</i>
                     </button>
                 </div>
@@ -22,23 +20,27 @@
         </form>
     </div>
 
-    <div class="row">
+    <div class="row equal-height">
         {% for review in reviews %} 
-        <div class="col s12 m6 l4 xl3">
-            <div class="card">                     
+        <div class="col s12 m6 l4 xl3 equal-height-col">
+            <div class="card card-height">                     
                 <div class="card-image" id="book-cover-img">                    
                     <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
-                    <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn-large halfway-fab red"><i class="material-icons">library_books</i></a>                       
-                </div>
+                    <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light btn-primary-color"><i class="material-icons">library_books</i></a>               
+        {% if session.user|lower == review.created_by|lower %}         
+        <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light amber darken-3 btn-action-optionso"><i class="material-icons">edit</i></a>
+        <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light deep-orange darken-3 btn-action-options"><i class="material-icons">delete_forever</i></a>
+        {% endif %}        
+                </div>                
                 <div class="card-content">
-                    <h5>{{ review.title }}</h5>
-                    <p>{{ review.author }}</p>                        
-                    <p>{{ review.genre_name }}</p>
-                    {% if session.user|lower == review.created_by|lower %}
-                        <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn-small btn-theme blue">Edit</a>
-                        <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn-small btn-theme red">Delete</a>                        
-                    {% endif %}
-                </div> 
+                    <h5 class="truncate">{{ review.title }}</h5>
+                    <p class="truncate">{{ review.author }}</p>                        
+                    <p class="truncate">{{ review.genre_name }}</p>                    
+                </div>
+                     
+                
+                    
+
             </div>
         </div>
         {% endfor %}
