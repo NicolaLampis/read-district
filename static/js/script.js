@@ -5,11 +5,7 @@ $(document).ready(function(){
 
     $('.materialboxed').materialbox();
 
-    $('.my-action-btn').floatingActionButton({
-        hoverEnabled: false,
-        direction: 'top',
-        isOpen: true
-    });
+    $('.modal').modal();
 
 });
 

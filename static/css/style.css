@@ -3,9 +3,9 @@
 body {
     margin: 0px;
     padding: 0px;
-    background: linear-gradient(135deg, rgba(210,210,205,1) 0%, rgba(244,245,245,1) 30%, rgba(202,210,210,1) 100%);
+    background: linear-gradient(110deg, rgba(215,215,190,1) 0%, rgba(245,245,230,1) 40%, rgba(198,198,180,1) 100%);
     font-family: "Crimson Pro", sans-serif;
-    color: rgb(17, 18, 19);
+    color: rgb(26, 27, 20);
     height: 100vh;
 }
 
@@ -13,9 +13,15 @@ body {
 #book-cover-img img {
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    
+    background-size: cover;    
     height: 400px;
+}
+
+#book-img-page img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
+    width: 100%;
 }
 
 /* -- Navbar -- */
@@ -24,7 +30,7 @@ a.brand-logo {
 }
 
 .nav-wrapper, .sidenav {
-    background-color: rgba(220,220,220,1);    
+    background-color: rgb(218,218,190);
 }
 
 .nav-wrapper a, 
@@ -35,30 +41,46 @@ a.brand-logo {
 }
 
 /* -- VVVVV -- */
-.card-panel {
-    background-color: rgba(244,245,245,1);
+.card-panel, .card-content {
+    background-color: rgb(245, 245, 238);
 }
 
 .text-shadow {
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.no-padding {
+    padding: 0px;
+}
+
+.modal-footer {
+    height: 80px !important;
+}
+
+.modal-icon {
+    font-size: 80px;
+}
+
+a:link, #title-link {
+    text-decoration: none;
+    color: rgb(26, 27, 20);
+}
 
 /* -- Flash messages -- */
 .flash-message {
-    color: white;
+    color: white;    
     font-weight: 600;
     width: calc(100% - 30px);    
-    background-color: rgb(40, 75, 90);    
-}
+    background-color: rgb(40, 75, 90);
+}    
 
 .flash-message h4 {
-    line-height: 1.5;
+    line-height: 1.5;    
 }
 
 /* -- Buttons -- */
 .btn-theme {
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .btn-primary-color {
@@ -66,18 +88,12 @@ a.brand-logo {
 }
 
 .btn-action-options {
-    top: 300px;
-}
-
-.btn-action-optionso {
-    top: 230px;
+    top: 320px;
 }
 
 /* -- Search-bar -- */
-#search-bar {
-    border-radius: 38px;
-    padding: 0px;
-    height: 76px;
+#search-bar {    
+    height: 74px;
     margin: 0px 10px;  
 }
 
@@ -90,5 +106,19 @@ a.brand-logo {
     a.brand-logo {
         padding-left: 0px;
         font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    a.brand-logo {        
+        font-size: 20px;
+    }
+
+    #clear-search-button {
+    margin-right: 0.2vw;
+    }
+
+    #search-bar {
+        margin: 0px 0px;
     }
 }

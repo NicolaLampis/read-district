@@ -2,49 +2,51 @@
 {% block content %}
     <h3 class="center-align text-shadow">Book Reviews</h3>   
     <!--  Search bar  -->
-    <div class="row card-panel" id="search-bar">
-        <form action="{{ url_for('search') }}" method="post" class="col s12 l10 offset-l1">
-            <div class="row valign-wrapper center-align">
+    <div class="row no-padding" id="search-bar">
+        <div class="card-panel col s12">
+        <form action="{{ url_for('search') }}" method="post">
+            <div class="valign-wrapper center-align">
                 <div class="input-field col s6 m8 l9 truncate">
                     <i class="material-icons prefix">search</i>
                     <input type="text" name="query" id="query" minlength="3" class="validate" required>
                     <label for="query">Search Book Review</label>                    
                 </div>
-                <div class="col s6 m4 l3">
-                    <a href="{{ url_for('get_books') }}" class="btn btn-theme red waves-effect waves-light" id="clear-search-button"><i class="material-icons">close</i></a>
+                <div class="col s6 m4 l3 no-padding">
+                    <a href="{{ url_for('get_books') }}" class="btn btn-theme deep-orange darken-3 waves-effect waves-light" id="clear-search-button"><i class="material-icons">close</i></a>
                     <button type="submit" class="btn btn-theme btn-primary-color waves-effect waves-light">
                         <i class="material-icons">search</i>
                     </button>
                 </div>
             </div>
         </form>
+        </div>
     </div>
 
-    <div class="row equal-height">
-        {% for review in reviews %} 
-        <div class="col s12 m6 l4 xl3 equal-height-col">
-            <div class="card card-height">                     
-                <div class="card-image" id="book-cover-img">                    
-                    <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
-                    <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light btn-primary-color"><i class="material-icons">library_books</i></a>               
-        {% if session.user|lower == review.created_by|lower %}         
-        <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light amber darken-3 btn-action-optionso"><i class="material-icons">edit</i></a>
-        <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light deep-orange darken-3 btn-action-options"><i class="material-icons">delete_forever</i></a>
-        {% endif %}        
-                </div>                
-                <div class="card-content">
-                    <h5 class="truncate">{{ review.title }}</h5>
-                    <p class="truncate">{{ review.author }}</p>                        
-                    <p class="truncate">{{ review.genre_name }}</p>                    
+    {% if reviews|length > 0 %}
+    <!--  Card, book image and info, visible to all users  -->
+        <div class="row equal-height">
+            {% for review in reviews %} 
+            <div class="col s12 m6 l4 xl3 equal-height-col">
+                <div class="card card-height">                     
+                    <div class="card-image" id="book-cover-img">                    
+                        <a href="{{ url_for('book_page', review_id=review._id) }}"><img src="{{ review.cover_img }}" alt="Reviewed book cover image"></a>
+                        <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light btn-primary-color"><i class="material-icons">library_books</i></a>               
+                        <!--  Buttons edit/delete only visible to the specific user  -->
+                        {% if session.user|lower == review.created_by|lower %}                        
+                        <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn halfway-fab waves-effect waves-light amber darken-3 btn-action-options"><i class="material-icons">edit</i></a>
+                        
+                        {% endif %}        
+                    </div>                
+                    <div class="card-content">
+                        <a href="{{ url_for('book_page', review_id=review._id) }}" id="title-link"><h5 class="truncate">{{ review.title }}</h5></a>
+                        <h6 class="truncate">{{ review.author }}</h6>                        
+                        <p class="truncate">{{ review.genre_name }}</p>                    
+                    </div> 
                 </div>
-                     
-                
-                    
-
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>       
-    
-
+    {% else %}        
+        <h3 class="center-align text-shadow">No Results Found</h3>
+    {% endif %}
 {% endblock %}
