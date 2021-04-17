@@ -22,6 +22,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;    
     width: 100%;
+    max-height: 500px;
 }
 
 /* -- Navbar -- */
@@ -41,8 +42,18 @@ a.brand-logo {
 }
 
 /* -- VVVVV -- */
-.card-panel, .card-content {
+.card-panel, .card-content, .card {
     background-color: rgb(245, 245, 238);
+}
+
+#card-book {
+    padding: 30px;
+    margin-top: 30px;
+}
+
+#review-p {
+    margin-bottom: 30px;
+    font-size: medium;
 }
 
 .text-shadow {
@@ -55,6 +66,7 @@ a.brand-logo {
 
 .modal-footer {
     height: 80px !important;
+    padding: 10px 20px !important;
 }
 
 .modal-icon {
@@ -64,6 +76,10 @@ a.brand-logo {
 a:link, #title-link {
     text-decoration: none;
     color: rgb(26, 27, 20);
+}
+
+span {
+    font-size: large;
 }
 
 /* -- Flash messages -- */
@@ -105,7 +121,7 @@ a:link, #title-link {
 @media screen and (max-width: 992px) {
     a.brand-logo {
         padding-left: 0px;
-        font-size: 25px;
+        font-size: 25px;        
     }
 }
 
@@ -120,5 +136,9 @@ a:link, #title-link {
 
     #search-bar {
         margin: 0px 0px;
+    }
+
+    #card-book {
+    padding: 25px 5px 30px 5px;
     }
 }

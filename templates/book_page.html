@@ -3,39 +3,42 @@
 
     
         <div class="row">
-            <div class="card col s12">
-            <div class="col s12 m4">
-                
-                <div class="card-image left-align" id="book-img-page">                    
-                    <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
-                    
-                </div>
-            </div>
-            <div class="col s12 m8">
-                    <div class="book-info">
-                        <i>Title: </i><h4>{{ review.title }}</h4>
-                        <i>Author: </i><h5>{{ review.author }}</h5>                        
-                        <p><i>Number of Pages: </i> {{ review.n_of_pages }}</p>
-                        <p><i>Genre: </i>{{ review.genre_name }}</p>
-                    </div>  
-            </div>  
+            <div class="card col s12" id="card-book">
+                <div class="col s12 m4">
         
-
-        <div class="row">
-            <div class="col s12">
-                <p>{{ review.text_review }}</p>
-            </div> 
-        </div>  
-
-        <div class="row">  
-            <div class="col s12">  
+                    <div class="card-image left-align" id="book-img-page">
+                        <img src="{{ review.cover_img }}" alt="Reviewed book cover image">
+        
+                    </div>
+                </div>
+                <div class="col s12 m8">
+                    <div class="book-info">
+                        <h4>{{ review.title }}</h4>
+                        <h5><span>Author: </span>  {{ review.author }}</h5>
+                        <h6><span>Number of Pages: </span>  {{ review.n_of_pages }}</h6>
+                        <h6><span>Genre: </span>  {{ review.genre_name }}</h6>
+                    </div>
+                </div>        
+        
+                
+                <div class="col s12">
+                    <h5><span>Review by: </span>  {{ review.created_by }}</h5>                    
+                    <p id="review-p">{{ review.text_review }}</p>
+                </div>
+                
+        
+                
+                    <div class="col s12">
                         {% if session.user|lower == review.created_by|lower %}
-                            <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn-large btn-theme waves-effect waves-light"><i class="material-icons left">edit</i>Edit</a>
-                            
-                            
-                            <!-- Modal Trigger -->
-                        <a href="#modal-delete" class="btn-large btn-theme waves-effect waves-light deep-orange darken-3 modal-trigger"><i class="material-icons left">delete_forever</i>Delete</a>
-
+                        <a href="{{ url_for('edit_review', review_id=review._id) }}"
+                            class="btn-large btn-theme btn-primary-color waves-effect waves-light"><i class="material-icons left">edit</i>Edit</a>
+        
+        
+                        <!-- Modal Trigger -->
+                        <a href="#modal-delete"
+                            class="btn-large btn-theme waves-effect waves-light deep-orange darken-3 modal-trigger white-text"><i
+                                class="material-icons left">delete_forever</i>Delete</a>
+        
                         <!-- Modal Structure -->
                         <div id="modal-delete" class="modal">
                             <div class="modal-content center-align">
@@ -44,17 +47,19 @@
                                 <p>Do you really want to delete <strong>"{{ review.title }}"</strong> review?</p>
                             </div>
                             <div class="modal-footer">
-                                <a href="#!" class="modal-close waves-effect waves-light btn-theme btn-large grey darken-2 white-text">Cancel</a>
-                                <a href="{{ url_for('delete_review', review_id=review._id) }}" class="modal-close waves-effect waves-light deep-orange darken-3 white-text btn-theme btn-large">Delete</a>
+                                <a href="#!"
+                                    class="modal-close waves-effect waves-light btn-theme btn-large grey darken-2 white-text">Cancel</a>
+                                <a href="{{ url_for('delete_review', review_id=review._id) }}"
+                                    class="modal-close waves-effect waves-light deep-orange darken-3 white-text btn-theme btn-large">Delete</a>
                             </div>
                         </div>
-
-                        {% endif %}                        
-            </div>        
+        
+                        {% endif %}
+                    </div>
+        
                 
+            </div>
         </div>
-       </div>     
-    </div>
     
     
 
