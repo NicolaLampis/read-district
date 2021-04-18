@@ -22,7 +22,15 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_books")
 def get_books():
-    reviews = list(mongo.db.reviews.find())
+    """
+    The reviews are ordered from the last added to the first.
+    If you refresh the search query you are safely redirected to books.html.
+    """
+    query = request.args.get("query")
+    if query:
+        reviews = list(mongo.db.reviews.find({"$text": {"$search": query}}).sort([("_id", -1)]))
+    else:
+        reviews = list(mongo.db.reviews.find().sort([("_id", -1)]))
     return render_template("books.html", reviews=reviews)
 
 
