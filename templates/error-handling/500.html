@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/error.css') }}" />
+{% endblock %}
+{% block content %}
+
+    <div id="error-container">    
+        <div class="center-align">
+            <i class="material-icons warning-icon">warning_amber</i>
+            <h1>Oops, something's gone wrong!</h1>    
+            <h2>500 - Internal Server Error</h2>
+            <p class="error-text">Sorry, we had some technical problem during your last operation. Try to refresh this page</p>
+            <a class="waves-effect waves-light btn-large btn-theme btn-primary-color" href="{{ url_for('get_books') }}">Go
+                To Book Reviews</a>
+        </div>
+    </div>    
+
+{% endblock %}
