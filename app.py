@@ -23,8 +23,9 @@ mongo = PyMongo(app)
 @app.route("/get_books")
 def get_books():
     """
-    The reviews are ordered from the last added to the first.
-    If you refresh the search query you are safely redirected to books.html.
+    The reviews are ordered from the last added to the first
+    into the list. If you refresh the search query you are safely 
+    redirected to books.html with no error.
     """
     query = request.args.get("query")
     if query:
