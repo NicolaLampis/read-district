@@ -150,7 +150,7 @@ def book_page(review_id):
     return render_template("book_page.html", review=review)
 
 
-"""Flask error handlers, HTTP response error code handling."""
+"""Flask error handlers, an error code trigger an HTTP response"""
 
 
 @app.errorhandler(404)
