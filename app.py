@@ -150,6 +150,19 @@ def book_page(review_id):
     return render_template("book_page.html", review=review)
 
 
+"""Flask error handlers, HTTP response error code handling."""
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    """
+    Renders an error page for http error respons code 404
+    displaying a friendly template with a button that directs the user
+    back to the main book-review page.
+    """
+    return render_template("/error-handlings/404.html", error=error)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
