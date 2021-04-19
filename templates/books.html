@@ -28,8 +28,9 @@
             {% for review in reviews %} 
             <div class="col s12 m6 l4 xl3 equal-height-col">
                 <div class="card hoverable card-height">                     
-                    <div class="card-image" id="book-cover-img">                    
-                        <a href="{{ url_for('book_page', review_id=review._id) }}"><img src="{{ review.cover_img }}" alt="cover image of {{ review.title }}"></a>
+                    <div class="card-image" id="book-cover-img">
+                        <!-- image broken will be replaced with a dummy image -->                                     
+                        <a href="{{ url_for('book_page', review_id=review._id) }}"><img id="cover-image" onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/book-not-available.jpg') }}';" src="{{ review.cover_img }}" alt="cover image of {{ review.title }}"></a>                        
                         <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light btn-primary-color" aria-label="book review and info"><i class="material-icons">library_books</i></a>               
                         <!--  Buttons edit/delete only visible to the specific user  -->
                         {% if session.user|lower == review.created_by|lower %}                        
