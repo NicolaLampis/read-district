@@ -6,9 +6,10 @@ body {
     background: linear-gradient(110deg, rgba(215,215,190,1) 0%, rgba(245,245,230,1) 40%, rgba(198,198,180,1) 100%);
     font-family: "Crimson Pro", sans-serif;
     color: rgb(26, 27, 20);
-    height: 100vh;
+    min-height: 100vh;
 }
 
+/* -- Error page 404, 500, 503 -- */
 #error-container {
     margin-top: 50px;
 }
@@ -22,4 +23,8 @@ body {
 p.error-text {
     font-size: large;
     margin-bottom: 30px;
+}
+
+.main-container {
+    min-height: calc(100vh - 197px);
 }

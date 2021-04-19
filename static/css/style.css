@@ -6,10 +6,18 @@ body {
     background: linear-gradient(110deg, rgba(215,215,190,1) 0%, rgba(245,245,230,1) 40%, rgba(198,198,180,1) 100%);
     font-family: "Crimson Pro", sans-serif;
     color: rgb(26, 27, 20);
-    height: 100vh;
+    min-height: 100vh;
 }
 
-/* -- Cover image of the books -- */
+.text-shadow {
+    text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main-conteiner {
+    margin-bottom: 40px;
+}
+
+/* -- Cover image of the books into books.html -- */
 #book-cover-img img {
     background-position: center;
     background-repeat: no-repeat;
@@ -17,6 +25,7 @@ body {
     height: 400px;
 }
 
+/* -- Cover image of the books into book_page.html -- */
 #book-img-page img {
     background-position: center;
     background-repeat: no-repeat;
@@ -41,7 +50,7 @@ a.brand-logo {
     text-transform: uppercase;
 }
 
-/* -- VVVVV -- */
+/* -- Cards -- */
 .card-panel, .card-content, .card {
     background-color: rgb(245, 245, 238);
 }
@@ -51,26 +60,14 @@ a.brand-logo {
     margin-top: 30px;
 }
 
+/* -- Book and Reviews pages -- */
 #review-p {
     margin-bottom: 30px;
     font-size: medium;
 }
 
-.text-shadow {
-    text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
 .no-padding {
     padding: 0px;
-}
-
-.modal-footer {
-    height: 80px !important;
-    padding: 10px 20px !important;
-}
-
-.modal-icon {
-    font-size: 80px;
 }
 
 a:link, #title-link {
@@ -80,6 +77,16 @@ a:link, #title-link {
 
 span {
     font-size: large;
+}
+
+/* -- Modal window -- */
+.modal-footer {
+    height: 80px !important;
+    padding: 10px 20px !important;
+}
+
+.modal-icon {
+    font-size: 80px;
 }
 
 /* -- Flash messages -- */
@@ -117,7 +124,18 @@ span {
     margin-right: 1vw;
 }
 
-/* -- media queries -- */
+/* -- Footer -- */
+.footer-container {
+    height: 43px;
+    background-color: rgb(40, 75, 90);    
+}
+
+.footer-info p {
+    padding: 10px;
+    color: white;
+}
+
+/* -- Media queries -- */
 @media screen and (max-width: 992px) {
     a.brand-logo {
         padding-left: 0px;
