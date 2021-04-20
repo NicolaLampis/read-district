@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-
+    <!-- title of the Page -->
     <h3 class="center-align text-shadow">Log In</h3>
-
+    <!-- Form inside a card -->
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel">
@@ -21,8 +21,7 @@
                         <input id="password" name="password" type="password" class="validate" required>
                         <label for="username">Password</label>
                     </div>
-                </div>
-                
+                </div>                
                 <!-- login button -->
                 <div class="row">
                     <button class="btn-large btn-theme btn-primary-color" type="submit">

@@ -14,13 +14,11 @@ body {
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.container {
-    height: 100%;
-}
-
-.main-conteiner {
-    min-height: calc(100vh - 195px);
+.main-container {
+    min-height: calc(100vh - 105px);
     padding-bottom: 60px;
+    width: 70%;
+    margin: auto;
 }
 
 /* -- Cover image of the books into books.html -- */
@@ -151,8 +149,9 @@ span {
         font-size: 25px;        
     }
 
-    .main-conteiner {
-    min-height: calc(100vh - 183px);
+    .main-container {
+    min-height: calc(100vh - 93px);
+    width: 80%;
     }
 }
 
@@ -171,5 +170,10 @@ span {
 
     #card-book {
     padding: 25px 5px 30px 5px;
+    }
+
+    .main-container {
+    min-height: calc(100vh - 93px);
+    width: 90%;
     }
 }

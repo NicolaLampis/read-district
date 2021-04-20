@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-
+    <!-- title of the Page -->
     <h3 class="center-align text-shadow">Edit Book Review</h3>
-
+    <!-- Form inside a card -->
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
             <div class="card-panel">
@@ -82,7 +82,6 @@
                         Submit Review <i class="material-icons left">check_circle</i>
                     </button>
                 </div>
-
             </div>
         </form>
     </div>
