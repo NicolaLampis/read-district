@@ -1,6 +1,8 @@
 # Read District
 
-This website provide book reviews and recommendation. You can write your personal review. Here you can find a selection of great book you'll love.
+This website provide book reviews and recommendation.
+You can write your personal review and read review of other users.
+Here you can find a selection of great book you'll love.
  
 ## UX
  
@@ -8,58 +10,51 @@ This website provide book reviews and recommendation. You can write your persona
 
 ### **Project Goals** ###
 
-The **goal** of this project is to build a a website that allows site visitors to read book reviews created by registered users and to find links to online retailers to purchase books they like.
-
+The **goal** of this project is to build a website, using backend knowledge, to allows users to read book reviews
+created by other registered users and write book reviews.
 
 The **features** on the website will:
 
-- Show an interactive list of book reviews containing book details and short user reviews for all site visitors.
-- Provide links to online retailers for the associated books reviewed.
-- Allow visitors to register a user account to log in to the site and create their own book reviews for others to see and read.
+- Display a list of book reviews containing book information.
+- Display all the details of each book and their review.
+- Visitors can see the reviews and can register a user account.
+- A registered user create their own book reviews and edit them.
 
 I achieve this by:
 
-- Providing a Registration form with username and password for users to create an account
-- Providing a log in page for existing users to log in to their account
-- Enabling users who are logged in to create new book reviews or edit their own previous book reviews.
+- Providing registration functionality. A Registration form with username and password allow the user to create an account.
+- Providing log in functionality. Users can log in to their account.
+- With backend technologies the website display and grant access to the data stored into the MongoDB database.
+- Enabling users who are logged in to create, edit or delete their own book reviews.
 
 ### **User Goals** ###
 
 - **Read** book reviews created by other users.
-- **Create** book reviews for others to read.
-- **Link** to online retailers to purchase the books they like.
+- **Search** book reviews.
+- **Create** book reviews, share a personal point of view with other readers.
+- **Update** apersonal book review.
+- **Delete** a book review.
 
 ### **User Stories** ###
 
 
 #### **New Site Visitor** ####
 
-- As a **user**, I want to see a **navigation bar** at the top of the page where I can navigate to each of the different site pages.
-- As a **user**, I can see a **collapsed navigation bar icon** on mobile devices that opens up to give access to the site navigation links when clicked.
-- As a **user**, I can see a **site logo** or name in the navigation bar.
-- As a **user**, I can see a **hero image** welcoming the user to the site.
-- As a **user**, I can see **Call To Actions (CTA)** to learn more about the book reviews available.
-- As a **user**, I want to see a page containing **all** the available book reviews.
-- As a **user**, I want to be able to search for book reviews.
-- As a **user**, I want to click on a **book review** to see more details about the book.
-- As a **user**, I want to be able to click **links** to **online retailers** to purchase the reviewed books.
-- As a **user**, I want to **register** a username and password to **log in** to the site.
-- As a **user**, I can see the website **privacy policy** and **terms and conditions**.
-- As a **user**, I can see a **site map** with **links** to all the site pages.
-- As a **user**, I can contact the site owner(s) using their **social media** channels.
+- As a **user**, I want to see a **navigation bar** always visible, that helps me to navigate to the site pages.
+- As a **user**, I want to see a complete list of the available book reviews.
+- As a **user**, I want to interact with the book cards to see more info about the book reviews displayed.
+- As a **user**, I want to be able to **search** for book reviews.
+- As a **user**, I want to **register** to the site with a personal username and password.
+- As a **user**, I want to be able to **log in** to the site.
+- As a **user**, I can contact the site owner(s) using GitHub.
+- As a **user**, I want a responsive app on mobile devices as well as desktop screen.
 
 
 #### **Returning Site Visitor** ####
 
 - As a **user**, I want to see my user account profile page.
-- As a **user**, I want to be able to click on a book review favourite button to save my favourite reviews.
 - As a **user**, I want to create, edit or delete my own book reviews.
-- As a **user**, I want to be able to wite a comment on a book review.
 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
-
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
 
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
 
