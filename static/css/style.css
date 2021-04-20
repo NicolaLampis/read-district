@@ -7,6 +7,7 @@ body {
     font-family: "Crimson Pro", sans-serif;
     color: rgb(26, 27, 20);
     min-height: 100vh;
+    position: relative;  
 }
 
 .text-shadow {
@@ -14,7 +15,7 @@ body {
 }
 
 .main-conteiner {
-    margin-bottom: 40px;
+    padding-bottom: 60px;
 }
 
 /* -- Cover image of the books into books.html -- */
@@ -127,11 +128,14 @@ span {
 /* -- Footer -- */
 .footer-container {
     height: 43px;
-    background-color: rgb(40, 75, 90);    
+    background-color: rgb(40, 75, 90);
+    position: absolute;
+    bottom: 0;
+    width: 100%;   
 }
 
 .footer-info p {
-    padding: 10px;
+    
     color: white;
 }
 

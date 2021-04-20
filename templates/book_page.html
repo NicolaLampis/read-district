@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-
     
         <div class="row">
             <div class="card col s12" id="card-book">
-                <div class="col s12 m4">
-        
+                <div class="col s12 m4">        
                     <div class="card-image left-align" id="book-img-page">
                         <!-- image broken will be replaced with a dummy image -->
-                        <img src="{{ review.cover_img }}" id="cover-image" onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/book-not-available.jpg') }}';" alt="Reviewed book cover image">
-        
+                        <img src="{{ review.cover_img }}" id="cover-image"
+                            onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/book-not-available.jpg') }}';" 
+                            alt="Reviewed book cover image">        
                     </div>
                 </div>
                 <div class="col s12 m8">

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-
+    <!-- title of the Page -->
     <h3 class="center-align text-shadow">Add a Book Review</h3>
-
+    <!-- Form inside a card -->
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_review') }}">
             <div class="card-panel">
-                <!-- title -->
+                <!-- title of the book -->
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">book</i>
@@ -76,7 +76,6 @@
                         Add new Review <i class="material-icons left hide-on-small-only">check_circle</i>
                     </button>
                 </div>
-
             </div>
         </form>
     </div>

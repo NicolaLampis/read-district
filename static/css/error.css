@@ -24,7 +24,3 @@ p.error-text {
     font-size: large;
     margin-bottom: 30px;
 }
-
-.main-container {
-    min-height: calc(100vh - 197px);
-}
