@@ -120,16 +120,20 @@ User profile
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # grab the session user's username from the database
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    """
-    Grant access to the user only if session cookies
-    are present in the browser, otherwise redirect to login.
-    """
-    if session["user"]:
-        return render_template("profile.html", username=username)
-    return redirect(url_for("login"))
+    try:
+        # grab the session user's username from the database
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        reviews = list(mongo.db.reviews.find({"created_by": session["user"]}))
+        """
+        Grant access to the user only if session cookies
+        are present in the browser, otherwise redirect to login.
+        """
+        if session["user"]:
+            return render_template("profile.html", username=username, reviews=reviews)
+    except Exception:
+        flash("Log in first!")
+        return redirect(url_for("login"))
 
 
 """

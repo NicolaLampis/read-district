@@ -1,14 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel">
-                <h3 class="center-align text-shadow">
-                    {{ username }}'s Profile
-                </h3>
-            </div>
+    <!-- title of the Page -->
+    <h3 class="center-align text-shadow">{{ username }}'s Profile</h3>
+    <!-- section visible only if there are reviews created by this user -->
+    {% if reviews|length > 0 %}
+        <h4 class="center-align text-shadow">Reviews:</h4>
+        <!--  list of reviews owned by this user  -->
+        <div class="row equal-height">
+            {% for review in reviews %}            
+                <div class="col s12 m6 l4 xl3 equal-height-col">
+                    <div class="card hoverable card-height">                           
+                        <div class="card-content">
+                            <span class="card-title truncate">{{ review.title }}</span>                        
+                            <h6 class="truncate">{{ review.author }}</h6>
+                            <p class="truncate">{{ review.genre_name }}</p>
+                        </div>
+                        {% if session.user|lower == review.created_by|lower %}     
+                        <!--  button redirect the user to the book review page  -->
+                        <div class="card-action">
+                            <a href="{{ url_for('book_page', review_id=review._id) }}"
+                                class="btn-large btn-theme waves-effect waves-light btn-primary-color" 
+                                aria-label="book review and info">
+                                <i class="material-icons left">library_books</i>Review
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>     
+                </div>            
+            {% endfor %}
         </div>
-    </div>
-
+    {% else %}        
+        <h3 class="center-align text-shadow">No Review Found</h3>
+    {% endif %}
 {% endblock %}
