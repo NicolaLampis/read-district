@@ -15,6 +15,7 @@ body {
 }
 
 .main-conteiner {
+    min-height: calc(100vh - 195px);
     padding-bottom: 60px;
 }
 
@@ -144,6 +145,10 @@ span {
     a.brand-logo {
         padding-left: 0px;
         font-size: 25px;        
+    }
+    
+    .main-conteiner {
+    min-height: calc(100vh - 183px);
     }
 }
 
