@@ -66,9 +66,11 @@
         {% endwith %}
     </section>
     <!-- Main section inject content -->  
-    <main class="main-container-page">            
+    <main>
+        <div class="main-container-page">
             {% block content %}    
-            {% endblock %}        
+            {% endblock %}
+        </div>        
     </main>
     <!-- Footer --> 
     <footer class="footer-container">        
