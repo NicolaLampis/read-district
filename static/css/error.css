@@ -11,7 +11,7 @@ body {
 
 /* -- Error page 404, 500, 503 -- */
 #error-container {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .warning-icon {

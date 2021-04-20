@@ -16,7 +16,7 @@ body {
 
 .main-container-page {
     min-height: calc(100vh - 105px);
-    padding-bottom: 60px;
+    padding-bottom: 50px;
     width: 70%;
     margin: auto;
 }
@@ -138,8 +138,9 @@ span {
 }
 
 .footer-info p {
-    
+    margin: 0px !important;    
     color: white;
+    padding: 9px;
 }
 
 /* -- Media queries -- */

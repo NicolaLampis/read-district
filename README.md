@@ -1,8 +1,6 @@
 # Read District
 
-This website provide book reviews and recommendation. Here you can find a selection of great book you'll love.
-
-Essentially, this part is your sales pitch.
+This website provide book reviews and recommendation. You can write your personal review. Here you can find a selection of great book you'll love.
  
 ## UX
  
