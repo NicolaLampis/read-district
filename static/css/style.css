@@ -14,7 +14,7 @@ body {
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.main-container {
+.main-container-page {
     min-height: calc(100vh - 105px);
     padding-bottom: 60px;
     width: 70%;
@@ -149,7 +149,7 @@ span {
         font-size: 25px;        
     }
 
-    .main-container {
+    .main-container-page {
     min-height: calc(100vh - 93px);
     width: 80%;
     }
@@ -172,7 +172,7 @@ span {
     padding: 25px 5px 30px 5px;
     }
 
-    .main-container {
+    .main-container-page {
     min-height: calc(100vh - 93px);
     width: 90%;
     }
