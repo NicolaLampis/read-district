@@ -1,9 +1,81 @@
 # Read District
 
+![Read District](wireframe/responsive.png)
+
 This website provide book reviews and recommendation.
 You can write your personal review and read review of other users.
 Here you can find a selection of great book you'll love.
- 
+
+
+---
+
+### **Contents** ###
+
+- [UX (User Experience)](#ux-user-experience)
+  - [Project Goals](#project-goals)
+  - [User Goals](#user-goals)
+  - [User Stories](#user-stories)
+  - [Site Owner Goals](#site-owner-goals)
+- [Design Choices](#design-choices)
+  - [Fonts](#fonts)
+  - [Colours](#colours)
+  - [Wireframes](#wireframes)
+- [Technologies Used](#technologies-used)
+  - [Languages](#languages)
+  - [Database](#database)
+  - [Libraries](#libraries)
+  - [Tools](#tools)
+- [Features](#features)
+  - [Features Implemented](#features-implemented)
+  - [Responsive Design](#responsive-design)
+  - [Topology](#topology)
+  - [Interactive Elements](#interactive-elements)
+  - [Future Features](#future-features)
+  - [Site Construction](#site-construction)
+  - [Page Layout](#page-layout)
+  - [Construction Table](#construction-table)
+  - [Database Design](#database-design)
+    - [genre Collection](#genre-collection)
+    - [users Collection](#users-collection)
+    - [privacy Collection](#privacy-collection)
+    - [terms_conditions Collection](#terms_conditions-collection)
+    - [Data Types](#data-types)
+- [SEO](#seo)
+    - [HTML Sitemap links](#html-sitemap-links)
+    - [XML Sitemap file](#xml-sitemap-file)
+    - [Google Search Console](#google-search-console)
+- [Project Management](#project-management)
+- [Version Control](#version-control)
+    - [Gitpod Workspaces](#gitpod-workspaces)
+    - [Branches](#branches)
+    - [Working within a branch](#working-within-a-branch)
+    - [Merging branches in GitHub](#merging-branches-in-github)
+    - [Update Gitpod with the latest GitHub commits](#update-gitpod-with-the-latest-github-commits)
+- [Testing](#testing)
+- [Bugs](#bugs)
+- [Deployment](#deployment)
+  - [Cloning the-reading-room from GitHub](#cloning-the-reading-room-from-github)
+    - [Prerequisites](#prerequisites)
+    - [Cloning the GitHub repository](#cloning-the-github-repository)
+    - [Creation of a Python Virtual Environment](#creation-of-a-python-virtual-environment)
+    - [Install the App dependencies and external libraries](#install-the-app-dependencies-and-external-libraries)
+    - [Create the database in MongoDB](#create-the-database-in-mongodb)
+    - [Create `env.py` file](#create-env.py-file)
+    - [Run the application](#run-the-application)
+  - [Deploying The Reading Room app to Heroku](#deploying-the-reading-room-app-to-heroku)
+    - [Create the Heroku App](#create-the-heroku-app)
+    - [Push your repository to GitHub](#push-your-repository-to-github)
+    - [Connect Heroku to GitHub](#connect-heroku-to-github)
+    - [Launch the App](#launch-the-app)
+- [Credits](#credits)
+  - [Images](#images)
+  - [Colour](#colour)
+  - [Inspiration](#inspiration)
+  - [Acknowledgements](#acknowledgements)
+
+
+---
+
 ## UX
  
 ## UX (User Experience) ##
@@ -55,38 +127,68 @@ I achieve this by:
 - As a **user**, I want to see my user account profile page.
 - As a **user**, I want to create, edit or delete my own book reviews.
 
+### **Site Owner Goals** ###
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+- As a site owner, I want to create an interactive website that make use database and backend features as coding portfolio.
+- As a site owner, I want to create a website for the user that want to share his /her personal opinions about books. 
+- As a site owner, I want to create a website easy to use, safe for the user and his/her data.
 
-## Features
+[Back to contents](#contents)
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
- 
-### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
+--- 
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
+## Design Choices ##
 
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+### **Fonts** ###
 
-### Features Left to Implement
-- Another feature idea
+The main font I've chosen is [Crimson Pro](https://fonts.google.com/specimen/Crimson+Pro?selected=Material+Icons&query=crimson), 
+is an antique-classic looking font that fit well with all type of books. It is sober and elegant.     
+Is easy to read even using small font sizes.
 
-## Technologies Used
+### **Colours** ###
 
+I've chosen for the backbround a color similar to the old paper, and a lighter tone for the serach bar and the cards.
+Instead of a white background I wanted a warmer and relaxing color for the eyes.
+I used strong accent of colors for text messages and buttons, because their function is to attract the attention.
+
+![Colour Palette](wireframe/color-palette.png)
+
+- (D7D7BE) - Navbar and a linear gradient for the bachground - black text
+- (F5F5EE) - Card contents and search bar background - black text
+- (284B5A) - Flash messages, primary color for the buttons and footer - white text
+- (D84315) - Buttons cancel/delete - white text
+- (616161) - Button cancel in the modal window - white text
+
+### **Wireframes** ###
+
+I designed the mock-ups of the website using [Figma](https://www.figma.com).
+
+I designed the pages having in mind cards and forms from previous projects. This design works well with responsive behaviours.
+The final result is slightly different, mostly improved by icons and organic repetition in the style.
+
+- [Reviews Page](wireframe/books.png)
+- [Review Page Mobile](wireframe/books-mobile.png)
+- [Page of Book Review](wireframe/book-page.png)
+- [Add a Review](wireframe/add-review.png)
+- [Profile](wireframe/profile.png)
+
+
+[Back to contents](#contents)
+
+---  
+
+## Technologies Used ##
 
 ### **Languages** ###
 
-- [Python3](https://www.python.org/)
-  - Used to create the main application functionality
 - [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
   - Used as the main markup language for the website content.
 - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
   - Used to style the individual webpages.
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
   - Used to create the interactive functionality of the website
-
+- [Python3](https://www.python.org/)
+  - Used to create the main application functionality
 
 ### **Database** ###
 
@@ -115,7 +217,6 @@ In addition, you may also use this section to discuss plans for additional featu
   - Templating language for Python.
 
 
-
 ### **Tools** ###
 
 - [Git](https://git-scm.com/)
@@ -125,7 +226,7 @@ In addition, you may also use this section to discuss plans for additional featu
 - [Gitpod](https://www.gitpod.io/)
   - An online IDE linked to the GitHub repository used for the majority of the code development.
 - [Visual Studio Code](https://code.visualstudio.com/)
-  - A locally installed IDE connected to the GitHub repository for when there was no internet connection to use Gitpod.
+  - Visual Studio Code is a freeware source-code editor made by Microsoft.
 - [Google Material Icons](https://fonts.google.com/icons?selected=Material+Icons)
   - Used for icons to enhance headings and add emphasis to text.
 - [Google fonts](https://fonts.google.com/)
@@ -133,15 +234,43 @@ In addition, you may also use this section to discuss plans for additional featu
 - [Color Gradient Generator](https://cssgradient.io/)
   - An online tool used to choose the website colour scheme.
 - [Am I Responsive?](http://ami.responsivedesign.is/)
-  - A tool for taking a quick snapshot of the responsive breakpoints of the website to visualize how the site will look on different device screen sizes in one place. The resulting screenshot is also used as the README.md logo image.
-- [Adobe Illustrator](https://en.wikipedia.org/wiki/Adobe_Photoshop) xxx
-  - A raster graphics editor used to manipulate the clock face background image.
-- [randomkeygen.com](https://randomkeygen.com/)
-  - Random secure password & keygen generator used to create the Flask SECRET_KEY.
+  - Snapshot of the responsive breakpoints of the website to visualize the look on mobile, tablet and desktop screens.
+- [Adobe Illustrator](https://en.wikipedia.org/wiki/Adobe_Illustrator)
+  - Adobe Illustrator is a vector graphics editor and design program developed by Adobe Inc.
+- [Adobe Photoshop](https://en.wikipedia.org/wiki/Adobe_Photoshop)
+  - Adobe Photoshop is a raster graphics editor developed by Adobe Inc.
 
 
 [Back to contents](#contents)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+
+## Features
+
+In this section, you should go over the different parts of your project, and describe each in a sentence or so.
+ 
+### Existing Features
+- Feature 1 - allows users X to achieve Y, by having them fill out Z
+- ...
+
+For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
+
+In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
 ## Testing
 

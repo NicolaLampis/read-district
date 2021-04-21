@@ -12,16 +12,18 @@
                     <label for="query">Search Book Review</label>                    
                 </div>
                 <div class="col s6 m4 l3 no-padding">
-                    <a href="{{ url_for('get_books') }}" class="btn btn-theme deep-orange darken-3 white-text waves-effect waves-light" id="clear-search-button" aria-label="clear search"><i class="material-icons">close</i></a>
-                    <button type="submit" class="btn btn-theme btn-primary-color white-text waves-effect waves-light" aria-label="search button">
-                        <i class="material-icons">search</i>
+                    <a href="{{ url_for('get_books') }}" 
+                        class="btn btn-theme deep-orange darken-3 white-text waves-effect waves-light" 
+                        id="clear-search-button" aria-label="clear search"><i class="material-icons">close</i>
+                    </a>
+                    <button type="submit" class="btn btn-theme btn-primary-color white-text waves-effect waves-light"
+                        aria-label="search button"><i class="material-icons">search</i>
                     </button>
                 </div>
             </div>
         </form>
         </div>
     </div>
-
     {% if reviews|length > 0 %}
     <!--  Card, book image and info, visible to all users  -->
         <div class="row equal-height">
@@ -30,16 +32,27 @@
                 <div class="card hoverable card-height">                     
                     <div class="card-image" id="book-cover-img">
                         <!-- image broken will be replaced with a dummy image -->                                     
-                        <a href="{{ url_for('book_page', review_id=review._id) }}"><img id="cover-image" onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/book-not-available.jpg') }}';" src="{{ review.cover_img }}" alt="cover image of {{ review.title }}"></a>                        
-                        <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn-large halfway-fab waves-effect waves-light btn-primary-color" aria-label="book review and info"><i class="material-icons">library_books</i></a>               
+                        <a href="{{ url_for('book_page', review_id=review._id) }}">
+                            <img id="cover-image"
+                            onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/book-not-available.jpg') }}';"
+                            src="{{ review.cover_img }}" alt="cover image of {{ review.title }}">
+                        </a>                        
+                        <a href="{{ url_for('book_page', review_id=review._id) }}"
+                            class="btn-floating btn-large halfway-fab waves-effect waves-light btn-primary-color"
+                            aria-label="book review and info"><i class="material-icons">library_books</i>
+                        </a>               
                         <!--  Buttons edit/delete only visible to the specific user  -->
                         {% if session.user|lower == review.created_by|lower %}                        
-                        <a href="{{ url_for('book_page', review_id=review._id) }}" class="btn-floating btn halfway-fab waves-effect waves-light amber darken-3 btn-action-options" aria-label="edit book"><i class="material-icons">edit</i></a>
-                        
+                        <a href="{{ url_for('book_page', review_id=review._id) }}" 
+                            class="btn-floating btn halfway-fab waves-effect waves-light amber darken-3 btn-action-options" 
+                            aria-label="edit book"><i class="material-icons">edit</i>
+                        </a>                        
                         {% endif %}        
                     </div>                
                     <div class="card-content">
-                        <a href="{{ url_for('book_page', review_id=review._id) }}" id="title-link" aria-label="{{ review.title }}"><h5 class="truncate">{{ review.title }}</h5></a>
+                        <a href="{{ url_for('book_page', review_id=review._id) }}" id="title-link" 
+                            aria-label="{{ review.title }}"><h5 class="truncate">{{ review.title }}</h5>
+                        </a>
                         <h6 class="truncate">{{ review.author }}</h6>                        
                         <p class="truncate">{{ review.genre_name }}</p>                    
                     </div> 
