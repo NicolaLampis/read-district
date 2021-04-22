@@ -1,4 +1,4 @@
-# Read District
+# Read District    
 
 ![Read District](wireframe/responsive.png)
 
@@ -27,23 +27,12 @@ Here you can find a selection of great book you'll love.
   - [Tools](#tools)
 - [Features](#features)
   - [Existing Features](#existing-features)
-  - [Responsive Design](#responsive-design)
-  - [Topology](#topology)
-  - [Interactive Elements](#interactive-elements)
+  - [Additional Site Features](#additional-site-features)
+  - [Site Construction](#site-construction)  
   - [Future Features](#future-features)
-  - [Site Construction](#site-construction)
   - [Page Layout](#page-layout)
   - [Construction Table](#construction-table)
   - [Database Design](#database-design)
-    - [genre Collection](#genre-collection)
-    - [users Collection](#users-collection)
-    - [privacy Collection](#privacy-collection)
-    - [terms_conditions Collection](#terms_conditions-collection)
-    - [Data Types](#data-types)
-- [SEO](#seo)
-    - [HTML Sitemap links](#html-sitemap-links)
-    - [XML Sitemap file](#xml-sitemap-file)
-    - [Google Search Console](#google-search-console)
 - [Project Management](#project-management)
 - [Version Control](#version-control)
     - [Gitpod Workspaces](#gitpod-workspaces)
@@ -226,6 +215,8 @@ The final result is slightly different, mostly improved by icons and organic rep
   - An online IDE linked to the GitHub repository used for the majority of the code development.
 - [Visual Studio Code](https://code.visualstudio.com/)
   - Visual Studio Code is a freeware source-code editor made by Microsoft.
+- [PIP](https://pip.pypa.io/en/stable/installing/)
+  - Package installer for Python. Use pip to install packages from the Python Package Index and other indexes.
 - [Google Material Icons](https://fonts.google.com/icons?selected=Material+Icons)
   - Used for icons to enhance headings and add emphasis to text.
 - [Google fonts](https://fonts.google.com/)
@@ -262,416 +253,174 @@ The final result is slightly different, mostly improved by icons and organic rep
         1. Books (search)
         2. Add Review (form -details of the book, Image URL and review)
         3. Profile (list of review written by the user)
-            - Book Page (Edit/Delete review)(Delete confirmation)
+            - Book Page (Edit/Delete review)
         4. Log Out    
 
 - Python code the behaviour of the page. By checking `if 'user' in session` the user can or cannot see part of the site and functionality. Security is ensured.
 - Jinja2 templating framework for Python is used to create the site's front-end dynamic content.
+- If the cover image of the book is broken a `'onerror' event` handle the error displaying a dummy image.
+- When you click the **Delete** button a modal window ask you to confirm or cancel the action.
 
 - Footer
     - Show my name, and that is a link for the GitHub page of this repository.
 
-### **Back-end Design** ###
+### Back-end Design ###
 
 - The app is created using Python3 and a Flask framework to render the HTML pages.
 - The site is deployed via a Heroku app linked to a GitHub repository.
 - The dynamic content is served utilising a MongoDB document based database.
 
-### **Site Construction** ###
+### Site Construction ###
 
-#### **Topology** ####
-- User Logged Out
-![Topology Logged Out](wireframes/topology-user-logout.png)
+#### Topology ####
+- User Logged Out, Visitor    
+![Topology Logged Out](wireframe/topology-visitor.png)
 
-- User Logged In
-![Topology Logged In](wireframes/topology-user-login.png)
-
-- Admin / Superuser Logged In
-![Topology Admin User](wireframes/topology-admin-user.png)
-
-
-#### **Jinja Template Relationship** ####
-
-- Template inheritance structure: 
-  ![Jinja Template layout diagram](wireframes/jinja-template-layout.png)
-
+- User Logged In    
+![Topology Logged In](wireframe/topology-user.png)
 
 ### **Page Layout** ###
 
-
 #### **Responsive Navbar** ####
 
-- Responsive Navbar changes at smaller screen sizes
-  ![Mobile Navbar](static/images/readme-content/navbar-mobile.png)
+- Jinja2 template conditions remove menu items based on the user logged in/out.
 
+- **Log Out** Navbar at desktop screen sizes    
+![Navbar](static/images/readme-content/navbar-logout.png)
+- **Log In** Navbar at desktop screen sizes    
+![Navbar](static/images/readme-content/navbar-login.png)  
 
-- Navbar contains the site logo
-- Jinja template conditions removes menu items based on:
-  - User logged in or out
-  - If the user account is Admin or Superuser
+- Responsive Navbar at small screen sizes    
+![Mobile Navbar](static/images/readme-content/navbar-mobile.png)
+- Responsive Navbar at small screen sizes, lateral menu collapsed    
+![Mobile Navbar menu collapsed](static/images/readme-content/navbar-mobile-menu.png)
 
-  ![Mobile navbar logged out](static/images/readme-content/navbar-mobile-logged-out.png)
+#### Page of the Book Reviews ####
 
-  ![Mobile Navbar](static/images/readme-content/navbar-full-logged-out.png)
-  
-  ![Mobile navbar logged in](static/images/readme-content/navbar-mobile-logged-in.png)
+- The book reviews page render all the cards that contain books reviewed. Available for all visitors.
 
-  ![Mobile Navbar](static/images/readme-content/navbar-full-logged-in.png)
+- Each card contains a circular button which opens the book page with more details and the review itself.
+  - When the user is the writer of the book review, another button suggest the ability to edit.
 
+- The search bar allows the user to search through the reviews. I created a text index that allow as parameter of the search the title or author of the book.
 
-#### **Welcome Page** ####
+#### Book Page ####
 
-- The welcome page contains a hero image utilising the Materialize CSS parallax feature
-- The CTA container shows the visitor welcome message and button inviting the user to find out more.
+- The book page render the book review plus book cover image, title, author, number of pages and genre. Available for all visitors.
+  - Only for the user writer of the book are visible the **Edit** and **Delete** buttons.
+  - Edit button redirect to the **Edit Page**.
+  - Delete button opens a confirmation modal window for the deletion.    
+![Edit Review](static/images/readme-content/book-page-tablet.png)
 
-  ![Welcome Page](static/images/readme-content/welcome-page.png)
+#### Add Review Page ####
 
-#### **Book Review Page** ####
+- The Add Review page consist in a form to complete and a submit button. Available only for registered user logged in.
+  - the submission of the form create a new **review** item into the database.
 
-- The book review page shows cards containing all available book reviews
-  - This page is available to all site visitors whether logged in or not.
-- Each card contains a floating orange button which opens the book page for that specific book review.
+#### Edit Review Page ####
 
-- The search bar allows the user to search the available boo reviews using a text index on the book_review collection comprising the genre, author and title fields.
+- Only for the user writer of the book have the permission to edit the review.
+  - The code search for the data of the book and pre-fills the form inputs with the current values, so that you can see exactly what you have to change.
+  - Cancel button, redirect to the book reviews.
+  - Submit Review button, submit all the changes.    
+![Edit Review](static/images/readme-content/edit.png)
 
-  ![Welcome Page](static/images/readme-content/book-review-page.png)
+#### Register Page ####
 
-#### **Book Page** ####
+- A new users can create an account filling the form.
+  - New usernames will checked in order to be unique in the db collection.
+  - Passwords are hashed before saving to the database (SHA256 Encryption with python)
+ 
+#### Login Page ####
 
-- Shows the book review details containing the full book review details.
+- Validation of both username and password, placed into users collection.
 
-  ![Book Page Buttons](static/images/readme-content/book-page.png)
+#### Profile Page ####
 
-  - The book cover image URL is an optional field.
-  - It was decided to serve a URL to a book cover image rather than saving a file for simplicity of demonstrating CRUD Functionality. However, as a future development, allowing the user to save an image file using the Flask-PyMongo `save_file()` and `send_file()` helpers is highly desirable.
-
-- Allows the logged in users to create comments about the book review by linking t the create comment page.
-
-  ![Comments](static/images/readme-content/book-review-comments.png)
-
-***Book Page Buttons***
-
-  ![Book Page Buttons](static/images/readme-content/book-page-fav-shop-btn.png)
-
-- Favourite button
-  - Writes the book ID, tile and author to the users collection as an object in the favourites array.
-
-- Shopping Cart
-  - Opens the Amazon.co.uk website showing the book as a search term in the URL.
-    - Saving a new book review creates a fake Amazon.co.uk affiliate link search URL using the following format:
-        `https://www.amazon.co.uk/s?k=[book]+[title]+[words]&tag=faketag`
-    - This format is a compromise as it only returns a general search for the book title because specific book product page uses an Amazon ASIN product number in the URL.
-    - In the case of books, the Amazon ASIN number directly matches the book's shorter ISBN-10 barcode and can link directly to the book using the minimum URL format:
-        `https://www.amazon.co.uk/dp/[ASIN]`
-    - However, physical copies of books primarily show the longer ISBN-13 code on the back which will not work correctly if the user records that number when creating a new book review.
-
-- Book review edit button
-  - Opens the edit review page.
-  - Only available if the user created the review.
-
-  ![Book review buttons](static/images/readme-content/book-review-buttons.png)
-
-
-- Book Review delete button
-  - Opens the edit review page.
-  - Only available if the user created the review.
-
-- Comments button
-  - Opens the add comment page.
-  - Only available to users logged in.
-
-  ![Comments button](static/images/readme-content/comments-button.png)
-
-#### **Add Review Page** ####
-
-- Users who are logged in can create new book reviews by entering the book details and a book review in the add bok review form.
-  - The Choose Genre select list reads data from the genres collection.
-- The ADD REVIEW button submits the form data to create a new document in the book_reviews table.
-
-  ![Add book review](static/images/readme-content/new-review.png)
-
-
-#### **Edit Review Page** ####
-
-- Only users who created the book review are permitted to edit the review.
-    - Loading the page gets the current book data from the book_review collection and pre-fills the Edit Review form.
-
-**Edit Review Buttons**
-- The red cancel button returns the user to the book review page without making any changes.
-- The green edit button updates the book_review document with the new data from all the form input fields.
-
-  ![Edit book review](static/images/readme-content/edit-book-review.png)
-
-#### **User Sign Up Page** ####
-
-- New users are encouraged to create a new account to access more site features.
-  - Usernames are required to be unique and are checked against existing usernames in the users collection.
-  - The user is required to complete all fields and check-box before the new user is saved to the users collection  
-  - Passwords are hashed / salted before saving to the database (SHA256)
-  - The member since date and last login date are also writted automatically at this point.
-
-  ![Sign Up](static/images/readme-content/sign-up.png)
-
-#### **User Login Page** ####
-
-- The user name and password are validated against existing users in the users collection.
-  - Users will not be allowed to log in if either the username or password are incorrect.
-
-  ![Log In](static/images/readme-content/log-in.png)
-
-#### **Profile Page** ####
-
-- The profile page displays the user's current account details.
-- The Favourites section displays a summary of the user's favourite books
-- The Book Reviews Written displays a summary of the user's submitted book reviews.
-
-  ![Log In](static/images/readme-content/profile.png)
-
-#### **Manage Genres Page** ####
-
-- Only visible for selected users e.g. Admin or Superuser account holders.
-- The page shows all current documents from the genres collection displayed in individual cards.
-  - Each card has an edit and delete button for that genre document.
-
-**Manage Genres Buttons**
-
-- Add Genre redirects the user to the Add Genre page where a new genre category can be added
-- Edit button redirects the user to the Edit Genre page where the genre name chan be updated
-- Delete button deletes the genre category from the genre collection.
-
-  ![Log In](static/images/readme-content/manage-genres.png)
-
-#### **Add Genre Page** ####
-
-- Allows the admin or superuser to create a new genre category
-- The Add Genre button writes the genre_name to the new genre document.
-
-  ![Log In](static/images/readme-content/add-genre.png)
-
-#### **Edit Genre Page** ####
-
-- Allows the admin or superuser to edit an existing genre category
-    - Loading the page gets the current genre_name from the genres collection and pre-fills the Edit Genre form.
-
-**Edit Genre Buttons**
-- The red cancel button returns the user to the manage genres page without making any changes.
-- The green edit button updates the genres document with the new data from the form input field.
-
-  ![Log In](static/images/readme-content/edit-genre.png)
-
-#### **Add Comment Page** ####
-- Any user logged in can create a comment on any book review.
-- The comment text, created date and username are saved as an object in the book_review table comments array.
-
-
-  ![Log In](static/images/readme-content/add-comment.png)
-
+- The profile page displays the user's name.
+- If any, Jinja will display a section that contain cards of the book reviews written by the user.
+- The review button redirect the user to the book page.    
+![Log In](static/images/readme-content/profile-mobile.png)
 
 ### **CRUD Functionality** ###
-
 
 | Site Page | Create | Read | Update | Delete |
 | --- | --- | --- | --- | --- |
 | Book Review |  | All book reviews |  |  |
+| Book Page |  | Single book review |  | Delete single review |
+| Add Review | Created book review |  |  |  |
 | Edit Review |  | Single book review | Update single book review |  |
-| Book Page | Add user favourite | Single book review |  | Delete single review |
-| Sign Up | Add new user |  |  |  |
+| Register | Add new user |  |  |  |
 | Log In |  | User details |  |  |
 | Profile |  | User details |  |  |
-| Profile |  | Created book reviews |  |  |
-| Profile |  | Favourite reviews |  |  |
-| Manage Genre |  | All genres |  | Delete genre |
-| Add Genre | Add new genre |  |  |  |
-| Edit Genre |  | Single genre | Update genre name |  |
-| Add Comment | Add new comment |  |  |  |
 
-### **User Alerts** ###
+### User Messages ###
 
-- Coloured Flask flash alerts are used to feedback a range of different user actions:
-
+- Flask flash message are used to feedback user actions:
   - **Success**
-  ![Log In](static/images/readme-content/flash-logged-in.png)
-  ![Add Favourite](static/images/readme-content/flash-favourite-added.png)
-  ![New Comment](static/images/readme-content/flash-new-comment.png)
-  ![Review Added](static/images/readme-content/flash-review-added.png)
-  ![Review Updated](static/images/readme-content/flash-review-updated.png)
+  - Log In
+  - Log Out
+  - Register
+  - Add Review
+  - Edite Review
+  - Delete Review
+    
+  - **Permission Denied**
+  - Log In - username or password incorrect
+  - Add Review - no session user
+  - Edite Review - no session user
+  - Delete Review - no session user
 
-  - **Advisory**
-  ![Genre Deleted](static/images/readme-content/flash-genre-deleted.png)
-  ![Log Out](static/images/readme-content/flash-logged-out.png)
-  ![Review Deleted](static/images/readme-content/flash-review-deleted.png)
+### Defensive Programming ###
 
-
-  - **Warning**
-  ![Delete warning](static/images/readme-content/flash-delete-warning.png)
-  ![Edit Warning](static/images/readme-content/flash-edit-warning.png)
-  ![Profile Redirect](static/images/readme-content/flash-profile-redirect.png)
-
-### **Defensive Programming** ###
-
-- In order to try to maintain the site security, defensive programming to prevent "brute force" loading of restricted pages was introduced.
-  - At its simplest level, certain pages are removed from view unless a user is logged in to the site.
-    - This ustilises session cookies to validate whether a user is logged in or not.
-  - The Python functions also contain checks on user input validity by employing if...esle statements as well as exception handling with try..except.
+- In order to maintain the site security, I used a defensive programming to prevent "brute force" loading of restricted pages.
+  - This means that if you are not logged in, you are not able to open or see certain pages.
+    - Using session cookies to validate whether a user is logged in or not.
+    - Using session cookies to validate a specific user data over others data.
+  - Functions in Python checks conditional statement and exception in order to handle a variety of wrong events.
     - examples of this include preventing site visitors, who aren't logged in, from just entering a page URL to bypass the login process. This type of exception redirects the user to the login page with a warning flash message.
 
+### Additional Site features ###
 
-### **Additional Site features** ###
+- Error Handlers. Flask have a function that returns a response when a type of error is raised, in this way we can redirect the user to an Error Page, 
+  that inform about the type of error, what to do or where to go. It is always present a button that redirect to the book reviews page.    
 
+- HTTP **404** Error
+- HTTP **500** Error    
+- HTTP **503** Error     
 
-- A set of friendly HTTP Error landing pages for site visitors to see if a requested page is unavailable or cannot be accessed.
-    - The pages provide a message to the user and a button to click to return the visitor to the homepage.
-
-    - HTTP 404 Error
-        ![HTTP 404 Error](static/images/readme-content/404-img.png)
-        
-
-    - HTTP 500 Error
-        ![HTTP 500 Error](static/images/readme-content/500-img.png)
-
-    - HTTP 503 Error
-        ![HTTP 503 Error](static/images/readme-content/503-img.png)
-
+![HTTP 404 Error](static/images/readme-content/error-404.png)
 
 ### **Future Features** ###
 
-- Site Admin User Account administration such as:
-  - User account deactivation
-  - User password change
-  - moderating user comments
+- User comments
+- Email - message notification
+- Upload image as a file
+- Superuser
 
-- Allowing users to upload image files:
-  - As an alternative to a URL on book reviews
-  - For a profile page thumbnail image etc.
-  
+### Database Design ###
 
-### **Database Design** ###
-
-
-#### [genre collection](wireframes/data-schemas/book_review.json) ####
-
-
-| Field Description | Collection Key | Data type |
-| --- | --- | --- |
-| Unique ID | _id | ObjectId |
-| Genre Name | genre_name | String |
-
-
-
-#### [users collection](wireframes/data-schemas/users.json) ####
-
+#### **users** collection ####
 
 | Field Description | Collection Key | Data type | Default Value |
 | --- | --- | --- | --- |
 | Unique ID | _id | ObjectId |   |
-| User Name | username | string |   |
-| SHA256 Hashed Password | password | String |   |
-| Admin Account | is_admin | String | "off" |
-| Superuser Account | is_super_user | String | "off" |
-| Sign Up Date | date_joined | Date Object | utcnow() |
-| Last User Login Date | last_login | Date Object | utcnow() |
+| Username | username | string |   |
+| Password Hashed | password | string |   |
+| Email | email | string |  |
 
-
-#### [book_review collection](wireframes/data-schemas/book_review.json) ####
-
+#### **reviews** collection ####
 
 | Field Description | Collection Key | Data type | Default Value |
 | --- | --- | --- | --- |
 | Unique ID | _id | ObjectId |   |
-| Genre Category | genre | String |   |
 | Book Title | title | String |   |
 | Book Author | author | String |   |
-| Book Cover Image URL | image_url | String |   |
-| Number of Pages | number_pages | Integer |   |
-| Book ISBN-13 Number | isbn | String |   |
-| Book Review Text | review | String |   |
-| User Book Rating | rating | String |   |
-| Created By username | create_by | String | username |
-| Created Date | created_date | Date Object | utcnow() |
-| Updated By | mutator | String |  |
-| Updated Date | mutation | Date Object |  |
-| Amazon Purchase Link | purchase_link | String | "https://www.amazon.co.uk/s?k=[book]+[title]+[words]&tag=faketag" |
-| Comments Array | comments | Array |   |
-| Commments Array Object | text | String |   |
-| Commments Array Object | created_by | String |   |
-| Commments Array Object | created_date | Date Object | utcnow() |
-
-
-#### [privacy collection](wireframes/data-schemas/privacy.json) ####
-
-
-| Field Description | Collection Key | Data type |
-| --- | --- | --- |
-| Unique ID | _id | ObjectId |
-| Policy Section Title | title | String |
-| Section Text Array | text | Array |
-| Section Text Array Object | Index | String |
-
-
-#### [terms_conditions collection](wireframes/data-schemas/) ####
-
-
-| Field Description | Collection Key | Data type |
-| --- | --- | --- |
-| Unique ID | _id | ObjectId |
-| Policy Section Title | title | String |
-| Section Text Array | text | Array |
-| Section Text Array Object | Index | String |
-
-
-
-#### Data Types ####
-
-- ObjectId
-- String
-- Int32
-- Date
-- Array
-- Object
-
-
-[Back to contents](#contents)
-
----
-
-## SEO ##
-
-Search Engine Optimisation for the site was provided in three complementary ways:
- - HTML Sitemap links
- - XML sitemap file saved in the root directory
- - Google Search Console
- 
-#### HTML Sitemap links ####
-- **Secondary** HTML links to each page in the website were added to the footer section of each site page to allow users an alternative means of navigating the site easily.
-
-#### XML Sitemap file ####
-- A sitemap.xml file was created to help search engines find, crawl and index the website more easily. It was created by using XML-Sitemaps.com and entering the URL for the deployed website and letting it automatically generate the required xml data for the whole site.
-The file was then saved in the GitHub repository root directory.
-
-- The following steps were used to generate the sitemap.xml file:
-  1. Visit [XML-Sitemaps.com](https://www.xml-sitemaps.com/) and enter the URL of the website https://the-reading-room.herokuapp.com/
-  2. Click Start
-  3. The site pages will automatically be scanned 
-  4. Click View Sitemap Details
-  5. Download the XML sitemap file
-  6. Save the sitemap.xml file in the root directory of the GitHub repository
-
-#### Google Search Console ####
-- Google Search Console was used to assist with testing and indexing issues with the website and to see how the site performs in Google search results.
-
-- The following steps were used to perform the indexing tests:
-  1.  Visit [Google Search Console](https://www.google.com/webmasters/tools/home)
-  2.  Click Add Property in the menu bar
-  3.  Enter the website URL https://the-reading-room.herokuapp.com/
-  4.  Click Continue
-  5.  Download the unique verification file created by Google
-  6.  Save the [verification file](googlef750fda78af5a952.html) in the root directory of the GitHub repository
-  7.  On Google Search Console, click Verify
-  8.  Once the verification passes, the site is available in the Google Search Console dashboard.
-
-Even though this website has a small number of pages and have navigation links on each page making the Sitemap largely unnecessary, I felt is was a good experience and good practice to add these features in.
-Note: I haven't added a robots.txt file yet but may add this in the future when I understand more about search engine optimisation techniques.
-
+| Number of Pages | number_pages | integer |   |
+| Genre Category | genre | string |   |
+| Book Review Text | review | string |   |
+| Book Cover Image URL | image_url | string |   |
+| Created By: User | create_by | string | username |
 
 [Back to contents](#contents)
 
@@ -679,87 +428,30 @@ Note: I haven't added a robots.txt file yet but may add this in the future when 
 
 ## Project Management ##
 
-GitHub [Projects](https://github.com/simonjvardy/the-reading-room/projects) are used to organize the planning and development of the website.
-Two GitHub projects are used to manage different aspects of the site development:
-- [Development](https://github.com/simonjvardy/the-reading-room/projects/1)
-  - Manages the project tasks and files.
-- [Bug Fixes](https://github.com/simonjvardy/the-reading-room/projects/2)
-  - Manages the triage and prioritization of the bug fixes.
-
-The Projects are created using the following GitHub templates:
-- `Automated kanban` template for the **Development** project.
-- `Bug Triage` template for the **Bug Fixes** project.
-
-The following kanban project cards are used to manage the tasks:
-- **Backlog** - this card is used to capture ideas for project tasks.
-- **To Do** - this is the current work queue for the project.
-- **In Progress** - this is the list of tasks currently in work.
-    - New issues and pull requests are automatically added to this column using project card automation options.
-- **Testing** - Testing tasks list
-- **Done** - completed tasks
-
-The following Bug Triage template project cards are used to manage the Bux fixes tasks:
-- **Needs Triage** - this card is used to capture new bugs prior to assigning a priority.
-  - A triage card is more appropriate for larger projects than this but left in as this is where all new issues are assigned when linking a project to a new issue.
-- **High Priority** - this is the high priority queue for the project.
-- **Low Priority** - this is the low priority queue for the project.
-- **Closed** - completed tasks.
-
-Markdown syntax is used to create **"To-Do" list** style checkboxes by adding `- [ ]` for an un-ticked checkbox and `- [x]` for a ticked checkbox on cards as a way of splitting a single complex task into a list of steps to be completed.
-
-![GitHub Projects - Development](static/images/github-projects-development.png)
-![GitHub Projects - Bug Fixes](static/images/github-projects-bugfixes.png)
-
+- GitHub [Projects](https://github.com/NicolaLampis/read-district/projects/1) helps to manage the planning of the website.
 
 [Back to contents](#contents)
 
 ---
 
 ## Version Control ##
-**Version control** for this repository is managed within **GitHub** and **Gitpod** using separate [branches](https://github.com/simonjvardy/the-reading-room/branches)  used to work on specific aspects of the project.
-The following describes the repository branch structure:
-- **Master** - this is the default branch and the source for the repository deployment.
-    - **Documentation** - this branch is used for updating the README.md and testing.md documentation only.
-    - **Development** - this branch is used as the main working branch for the website development.
-    - **Features** - this branch is used to try out new ideas and enhancements for the website.
-        - Features and enhancements that are accepted are merged down into the Development branch.
-    - Each individual **bug fixes** are raised within their own **separate branches** using the naming convention **\<GitHub Issue ID Number>-\<bug fix description>** e.g. branch name ***12-correct-navbar-links*** 
-
-The following workflow steps are used to create and update branches within Gitpod and to push changes back to GitHub.
-
+- Version control allows you to keep track of your work and helps you to easily explore the changes you have made.
+- This repository is hosted by **Github** and the workspace is managed with **Gitpod**.
+- Branch **Master** is the dafault branch in Git.
+- To save the code development progress use the commands:
+  - git add -A
+  - git commit -m "your commit message"
+  - git push  (default to the master branch)
 
 #### Gitpod Workspaces ####
-1. Open **Gitpod** from **Github** using the Gitpod button. This needs to only be done **once** at the start of the project.
-2. Start the Gitpod Workspace which opens an **online IDE editor** window.
+1. In your GitHub repository click on the Gitpod button to start the workspace.
+2. Gitpod loads the **online IDE editor** window, you are ready to code.
 
-
-#### Branches ####
-3. For changes to be made to any **documentation files**, the git command `git checkout documentation` is used to checkout and switch to the **documentation branch**.
-4. For changes to be made to **other files** under normal site development, the git command `git checkout development` is used to checkout and switch to the **development branch**.
-5. For changes to be made to new files for site enhancements, the git command `git checkout features` is used to checkout and switch to the **features branch**.
-6. To create a **new branch** for bug fixes, use the git command `git checkout -b <branch-name>` to **create and switch** to the new branch.
-
-
-#### Working within a branch ####
-7. **New** or **modified** files are **staged** using the `git add .` command
-8. The changes are **committed** using `git commit -m "<commit message>"` command.
-9. If the changes are in a newly created branch, the **committed** changes are **pushed** from Gitpod to GitHub using the `git push --set-upstream origin <branch-name>` command as there is currently no upstream branch in the remote repository.
-10. For branches that have already been synchronized, the **committed** changes are **pushed** from Gitpod to GitHub using the `git push` command.
-
-
-#### Merging branches in GitHub ####
-11. Opening the repository in Github, a new **pull request** is created for the updated branch and assigned to its related **Development**, **Development - JavaScript** or **Bug Fixes** project.
-12. The changes are **reviewed** to ensure there are **no conflicts** between the **updated branch** and the **Master branch**.
-13. The changes are then **merged** into the **Master branch** and the merge request is **closed**. The **Project entry** is **automatically** moved to the **Done** card.
-
-
-#### Update Gitpod with the latest GitHub commits ####
-14. To update Gitpod with the **latest commits** From GitHub, the `git checkout master` command is used to checkout and switch to the master branch.
-15. Use the `git pull` command to update the master branch and **reset the pointer**.
-16. Now **switch** to the **other branches** in Gitpod using the `git checkout <branch-name>` command and use the `git merge origin/master` command to **update each branch in turn**.
-17. Use the `git push` on **each branch** to update the relevant GiHub Branches to the **same commit** as the **Master branch**.
-18. **Repeat steps 3 - 17 regularly** to ensure updates are **saved** and **correctly version controlled** in GitHub.
-
+#### Update Repository ####
+- To update the repository inside GitHub, use these commands in the Gitpod terminal
+  1. git add -A
+  2. git commit -m "your commit message"
+  3. git push  (default to the master branch)
 
 [Back to contents](#contents)
 
@@ -767,21 +459,6 @@ The following workflow steps are used to create and update branches within Gitpo
 ## Testing ##
 
 - Testing information can be found in a separate [testing.md](testing.md) file.
-
-
-[Back to contents](#contents)
-
----
-## Bugs ##
-
-To manage bugs and issues tracking, the default GitHub [bug_report.md template](https://github.com/simonjvardy/the-reading-room/blob/master/.github/ISSUE_TEMPLATE/bug_report.md) has been created and activated within the repository settings Features > Issues section.
-All new bugs and issues are tracked within the GitHub repository [Issues section](https://github.com/simonjvardy/the-reading-room/issues) .
-Open issues are managed within the [GitHub Projects section](https://github.com/simonjvardy/the-reading-room/projects)
-
-Each branch is then **merged** into the **master branch** using a **pull request** that is **linked** to the **open issue**. Once merged, and the bug report **closed**, the branch is **deleted**.
-
-Fixed bugs and issues are marked as [closed](https://github.com/simonjvardy/the-reading-room/issues?q=is%3Aissue+is%3Aclosed).
-
 
 [Back to contents](#contents)
 
@@ -1001,414 +678,6 @@ The following websites were used as the starting point and inspiration for creat
 
 
 
-### **Responsive Front-end Design** ###
-
-- Responsive mobile first design. I used [MaterializeCSS](https://materializecss.com/) framework.
-- I used [Jinja](https://jinja.palletsprojects.com/en/2.11.x/), that is a templating language for Python, modelled after Django’s templates.
-
-### **Back-end Design** ###
-
-- The app is created using Python3 and a Flask framework to render the HTML pages.
-- The site is deployed via a Heroku app linked to a GitHub repository.
-- The dynamic content is served utilising a MongoDB document based database.
-
-### **Site Construction** ###
-
-#### **Topology** ####
-- User Logged Out
-![Topology Logged Out](wireframes/topology-user-logout.png)
-
-- User Logged In
-![Topology Logged In](wireframes/topology-user-login.png)
-
-- Admin / Superuser Logged In
-![Topology Admin User](wireframes/topology-admin-user.png)
-
-
-#### **Jinja Template Relationship** ####
-
-- Template inheritance structure: 
-  ![Jinja Template layout diagram](wireframes/jinja-template-layout.png)
-
-
-### **Page Layout** ###
-
-
-#### **Responsive Navbar** ####
-
-- Responsive Navbar changes at smaller screen sizes
-  ![Mobile Navbar](static/images/readme-content/navbar-mobile.png)
-
-
-- Navbar contains the site logo
-- Jinja template conditions removes menu items based on:
-  - User logged in or out
-  - If the user account is Admin or Superuser
-
-  ![Mobile navbar logged out](static/images/readme-content/navbar-mobile-logged-out.png)
-
-  ![Mobile Navbar](static/images/readme-content/navbar-full-logged-out.png)
-  
-  ![Mobile navbar logged in](static/images/readme-content/navbar-mobile-logged-in.png)
-
-  ![Mobile Navbar](static/images/readme-content/navbar-full-logged-in.png)
-
-
-#### **Welcome Page** ####
-
-- The welcome page contains a hero image utilising the Materialize CSS parallax feature
-- The CTA container shows the visitor welcome message and button inviting the user to find out more.
-
-  ![Welcome Page](static/images/readme-content/welcome-page.png)
-
-#### **Book Review Page** ####
-
-- The book review page shows cards containing all available book reviews
-  - This page is available to all site visitors whether logged in or not.
-- Each card contains a floating orange button which opens the book page for that specific book review.
-
-- The search bar allows the user to search the available boo reviews using a text index on the book_review collection comprising the genre, author and title fields.
-
-  ![Welcome Page](static/images/readme-content/book-review-page.png)
-
-#### **Book Page** ####
-
-- Shows the book review details containing the full book review details.
-
-  ![Book Page Buttons](static/images/readme-content/book-page.png)
-
-  - The book cover image URL is an optional field.
-  - It was decided to serve a URL to a book cover image rather than saving a file for simplicity of demonstrating CRUD Functionality. However, as a future development, allowing the user to save an image file using the Flask-PyMongo `save_file()` and `send_file()` helpers is highly desirable.
-
-- Allows the logged in users to create comments about the book review by linking t the create comment page.
-
-  ![Comments](static/images/readme-content/book-review-comments.png)
-
-***Book Page Buttons***
-
-  ![Book Page Buttons](static/images/readme-content/book-page-fav-shop-btn.png)
-
-- Favourite button
-  - Writes the book ID, tile and author to the users collection as an object in the favourites array.
-
-- Shopping Cart
-  - Opens the Amazon.co.uk website showing the book as a search term in the URL.
-    - Saving a new book review creates a fake Amazon.co.uk affiliate link search URL using the following format:
-        `https://www.amazon.co.uk/s?k=[book]+[title]+[words]&tag=faketag`
-    - This format is a compromise as it only returns a general search for the book title because specific book product page uses an Amazon ASIN product number in the URL.
-    - In the case of books, the Amazon ASIN number directly matches the book's shorter ISBN-10 barcode and can link directly to the book using the minimum URL format:
-        `https://www.amazon.co.uk/dp/[ASIN]`
-    - However, physical copies of books primarily show the longer ISBN-13 code on the back which will not work correctly if the user records that number when creating a new book review.
-
-- Book review edit button
-  - Opens the edit review page.
-  - Only available if the user created the review.
-
-  ![Book review buttons](static/images/readme-content/book-review-buttons.png)
-
-
-- Book Review delete button
-  - Opens the edit review page.
-  - Only available if the user created the review.
-
-- Comments button
-  - Opens the add comment page.
-  - Only available to users logged in.
-
-  ![Comments button](static/images/readme-content/comments-button.png)
-
-#### **Add Review Page** ####
-
-- Users who are logged in can create new book reviews by entering the book details and a book review in the add bok review form.
-  - The Choose Genre select list reads data from the genres collection.
-- The ADD REVIEW button submits the form data to create a new document in the book_reviews table.
-
-  ![Add book review](static/images/readme-content/new-review.png)
-
-
-#### **Edit Review Page** ####
-
-- Only users who created the book review are permitted to edit the review.
-    - Loading the page gets the current book data from the book_review collection and pre-fills the Edit Review form.
-
-**Edit Review Buttons**
-- The red cancel button returns the user to the book review page without making any changes.
-- The green edit button updates the book_review document with the new data from all the form input fields.
-
-  ![Edit book review](static/images/readme-content/edit-book-review.png)
-
-#### **User Sign Up Page** ####
-
-- New users are encouraged to create a new account to access more site features.
-  - Usernames are required to be unique and are checked against existing usernames in the users collection.
-  - The user is required to complete all fields and check-box before the new user is saved to the users collection  
-  - Passwords are hashed / salted before saving to the database (SHA256)
-  - The member since date and last login date are also writted automatically at this point.
-
-  ![Sign Up](static/images/readme-content/sign-up.png)
-
-#### **User Login Page** ####
-
-- The user name and password are validated against existing users in the users collection.
-  - Users will not be allowed to log in if either the username or password are incorrect.
-
-  ![Log In](static/images/readme-content/log-in.png)
-
-#### **Profile Page** ####
-
-- The profile page displays the user's current account details.
-- The Favourites section displays a summary of the user's favourite books
-- The Book Reviews Written displays a summary of the user's submitted book reviews.
-
-  ![Log In](static/images/readme-content/profile.png)
-
-#### **Manage Genres Page** ####
-
-- Only visible for selected users e.g. Admin or Superuser account holders.
-- The page shows all current documents from the genres collection displayed in individual cards.
-  - Each card has an edit and delete button for that genre document.
-
-**Manage Genres Buttons**
-
-- Add Genre redirects the user to the Add Genre page where a new genre category can be added
-- Edit button redirects the user to the Edit Genre page where the genre name chan be updated
-- Delete button deletes the genre category from the genre collection.
-
-  ![Log In](static/images/readme-content/manage-genres.png)
-
-#### **Add Genre Page** ####
-
-- Allows the admin or superuser to create a new genre category
-- The Add Genre button writes the genre_name to the new genre document.
-
-  ![Log In](static/images/readme-content/add-genre.png)
-
-#### **Edit Genre Page** ####
-
-- Allows the admin or superuser to edit an existing genre category
-    - Loading the page gets the current genre_name from the genres collection and pre-fills the Edit Genre form.
-
-**Edit Genre Buttons**
-- The red cancel button returns the user to the manage genres page without making any changes.
-- The green edit button updates the genres document with the new data from the form input field.
-
-  ![Log In](static/images/readme-content/edit-genre.png)
-
-#### **Add Comment Page** ####
-- Any user logged in can create a comment on any book review.
-- The comment text, created date and username are saved as an object in the book_review table comments array.
-
-
-  ![Log In](static/images/readme-content/add-comment.png)
-
-
-### **CRUD Functionality** ###
-
-
-| Site Page | Create | Read | Update | Delete |
-| --- | --- | --- | --- | --- |
-| Book Review |  | All book reviews |  |  |
-| Edit Review |  | Single book review | Update single book review |  |
-| Book Page | Add user favourite | Single book review |  | Delete single review |
-| Sign Up | Add new user |  |  |  |
-| Log In |  | User details |  |  |
-| Profile |  | User details |  |  |
-| Profile |  | Created book reviews |  |  |
-| Profile |  | Favourite reviews |  |  |
-| Manage Genre |  | All genres |  | Delete genre |
-| Add Genre | Add new genre |  |  |  |
-| Edit Genre |  | Single genre | Update genre name |  |
-| Add Comment | Add new comment |  |  |  |
-
-### **User Alerts** ###
-
-- Coloured Flask flash alerts are used to feedback a range of different user actions:
-
-  - **Success**
-  ![Log In](static/images/readme-content/flash-logged-in.png)
-  ![Add Favourite](static/images/readme-content/flash-favourite-added.png)
-  ![New Comment](static/images/readme-content/flash-new-comment.png)
-  ![Review Added](static/images/readme-content/flash-review-added.png)
-  ![Review Updated](static/images/readme-content/flash-review-updated.png)
-
-  - **Advisory**
-  ![Genre Deleted](static/images/readme-content/flash-genre-deleted.png)
-  ![Log Out](static/images/readme-content/flash-logged-out.png)
-  ![Review Deleted](static/images/readme-content/flash-review-deleted.png)
-
-
-  - **Warning**
-  ![Delete warning](static/images/readme-content/flash-delete-warning.png)
-  ![Edit Warning](static/images/readme-content/flash-edit-warning.png)
-  ![Profile Redirect](static/images/readme-content/flash-profile-redirect.png)
-
-### **Defensive Programming** ###
-
-- In order to try to maintain the site security, defensive programming to prevent "brute force" loading of restricted pages was introduced.
-  - At its simplest level, certain pages are removed from view unless a user is logged in to the site.
-    - This ustilises session cookies to validate whether a user is logged in or not.
-  - The Python functions also contain checks on user input validity by employing if...esle statements as well as exception handling with try..except.
-    - examples of this include preventing site visitors, who aren't logged in, from just entering a page URL to bypass the login process. This type of exception redirects the user to the login page with a warning flash message.
-
-
-### **Additional Site features** ###
-
-
-- A set of friendly HTTP Error landing pages for site visitors to see if a requested page is unavailable or cannot be accessed.
-    - The pages provide a message to the user and a button to click to return the visitor to the homepage.
-
-    - HTTP 404 Error
-        ![HTTP 404 Error](static/images/readme-content/404-img.png)
-        
-
-    - HTTP 500 Error
-        ![HTTP 500 Error](static/images/readme-content/500-img.png)
-
-    - HTTP 503 Error
-        ![HTTP 503 Error](static/images/readme-content/503-img.png)
-
-
-### **Future Features** ###
-
-- Site Admin User Account administration such as:
-  - User account deactivation
-  - User password change
-  - moderating user comments
-
-- Allowing users to upload image files:
-  - As an alternative to a URL on book reviews
-  - For a profile page thumbnail image etc.
-  
-
-### **Database Design** ###
-
-
-#### [genre collection](wireframes/data-schemas/book_review.json) ####
-
-
-| Field Description | Collection Key | Data type |
-| --- | --- | --- |
-| Unique ID | _id | ObjectId |
-| Genre Name | genre_name | String |
-
-
-
-#### [users collection](wireframes/data-schemas/users.json) ####
-
-
-| Field Description | Collection Key | Data type | Default Value |
-| --- | --- | --- | --- |
-| Unique ID | _id | ObjectId |   |
-| User Name | username | string |   |
-| SHA256 Hashed Password | password | String |   |
-| Admin Account | is_admin | String | "off" |
-| Superuser Account | is_super_user | String | "off" |
-| Sign Up Date | date_joined | Date Object | utcnow() |
-| Last User Login Date | last_login | Date Object | utcnow() |
-
-
-#### [book_review collection](wireframes/data-schemas/book_review.json) ####
-
-
-| Field Description | Collection Key | Data type | Default Value |
-| --- | --- | --- | --- |
-| Unique ID | _id | ObjectId |   |
-| Genre Category | genre | String |   |
-| Book Title | title | String |   |
-| Book Author | author | String |   |
-| Book Cover Image URL | image_url | String |   |
-| Number of Pages | number_pages | Integer |   |
-| Book ISBN-13 Number | isbn | String |   |
-| Book Review Text | review | String |   |
-| User Book Rating | rating | String |   |
-| Created By username | create_by | String | username |
-| Created Date | created_date | Date Object | utcnow() |
-| Updated By | mutator | String |  |
-| Updated Date | mutation | Date Object |  |
-| Amazon Purchase Link | purchase_link | String | "https://www.amazon.co.uk/s?k=[book]+[title]+[words]&tag=faketag" |
-| Comments Array | comments | Array |   |
-| Commments Array Object | text | String |   |
-| Commments Array Object | created_by | String |   |
-| Commments Array Object | created_date | Date Object | utcnow() |
-
-
-#### [privacy collection](wireframes/data-schemas/privacy.json) ####
-
-
-| Field Description | Collection Key | Data type |
-| --- | --- | --- |
-| Unique ID | _id | ObjectId |
-| Policy Section Title | title | String |
-| Section Text Array | text | Array |
-| Section Text Array Object | Index | String |
-
-
-#### [terms_conditions collection](wireframes/data-schemas/) ####
-
-
-| Field Description | Collection Key | Data type |
-| --- | --- | --- |
-| Unique ID | _id | ObjectId |
-| Policy Section Title | title | String |
-| Section Text Array | text | Array |
-| Section Text Array Object | Index | String |
-
-
-
-#### Data Types ####
-
-- ObjectId
-- String
-- Int32
-- Date
-- Array
-- Object
-
-
-[Back to contents](#contents)
-
----
-
-## SEO ##
-
-Search Engine Optimisation for the site was provided in three complementary ways:
- - HTML Sitemap links
- - XML sitemap file saved in the root directory
- - Google Search Console
- 
-#### HTML Sitemap links ####
-- **Secondary** HTML links to each page in the website were added to the footer section of each site page to allow users an alternative means of navigating the site easily.
-
-#### XML Sitemap file ####
-- A sitemap.xml file was created to help search engines find, crawl and index the website more easily. It was created by using XML-Sitemaps.com and entering the URL for the deployed website and letting it automatically generate the required xml data for the whole site.
-The file was then saved in the GitHub repository root directory.
-
-- The following steps were used to generate the sitemap.xml file:
-  1. Visit [XML-Sitemaps.com](https://www.xml-sitemaps.com/) and enter the URL of the website https://the-reading-room.herokuapp.com/
-  2. Click Start
-  3. The site pages will automatically be scanned 
-  4. Click View Sitemap Details
-  5. Download the XML sitemap file
-  6. Save the sitemap.xml file in the root directory of the GitHub repository
-
-#### Google Search Console ####
-- Google Search Console was used to assist with testing and indexing issues with the website and to see how the site performs in Google search results.
-
-- The following steps were used to perform the indexing tests:
-  1.  Visit [Google Search Console](https://www.google.com/webmasters/tools/home)
-  2.  Click Add Property in the menu bar
-  3.  Enter the website URL https://the-reading-room.herokuapp.com/
-  4.  Click Continue
-  5.  Download the unique verification file created by Google
-  6.  Save the [verification file](googlef750fda78af5a952.html) in the root directory of the GitHub repository
-  7.  On Google Search Console, click Verify
-  8.  Once the verification passes, the site is available in the Google Search Console dashboard.
-
-Even though this website has a small number of pages and have navigation links on each page making the Sitemap largely unnecessary, I felt is was a good experience and good practice to add these features in.
-Note: I haven't added a robots.txt file yet but may add this in the future when I understand more about search engine optimisation techniques.
-
-
-[Back to contents](#contents)
 
 ---
 
