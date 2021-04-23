@@ -438,10 +438,6 @@ The final result is slightly different, mostly improved by icons and organic rep
 - Version control allows you to keep track of your work and helps you to easily explore the changes you have made.
 - This repository is hosted by **Github** and the workspace is managed with **Gitpod**.
 - Branch **Master** is the dafault branch in Git.
-- To save the code development progress use the commands:
-  - git add -A
-  - git commit -m "your commit message"
-  - git push  (default to the master branch)
 
 #### Gitpod Workspaces ####
 1. In your GitHub repository click on the Gitpod button to start the workspace.
@@ -456,6 +452,7 @@ The final result is slightly different, mostly improved by icons and organic rep
 [Back to contents](#contents)
 
 ---
+
 ## Testing ##
 
 - Testing information can be found in a separate [testing.md](testing.md) file.
@@ -465,9 +462,31 @@ The final result is slightly different, mostly improved by icons and organic rep
 ---
 
 ## Deployment ##
+The website was developed using **Git** pushed to **GitHub**, which hosts the repository.
 
-The website was developed using both *Gitpod* and *Visual Studio Code* and using *Git* pushed to *GitHub*, which hosts the repository. I made the following steps to deploy the site using *Heroku*:
+### How to run this project locally ###
+To run this project locally you will need the following tools installed on your system:
+- [Python 3.6 or higher](https://www.python.org/downloads/) and [PIP](https://pip.pypa.io/en/stable/installing/)
+- An IDE such as Visual Studio Code
+- Git
+- An account at [MongoDB Atlas](https://www.mongodb.com)
 
+#### Instruction ####
+1. Navigate to the GitHub repository https://github.com/NicolaLampis/read-district .
+    - click the Code button, then "download zip" to have a copy stored in you machine. 
+        - Unzip the repository into the chosen folder, open with your favourite IDE.
+    - click the Code button, copy the URL.    
+        - Having Git installed on your system, you can clone the repository with the following command.
+```
+git clone https://github.com/NicolaLampis/read-district
+```
+2. If possible open a terminal session in the unzip folder or cd to the correct location.
+
+3. A virtual environment is recommended for the Python interpreter, I recommend using Pythons built in virtual environment. Enter the command:
+```
+python -m .venv venv
+```
+*NOTE: Your Python command may differ, such as python3 or py*
 
 ### **Cloning the-reading-room from GitHub** ###
 
@@ -675,77 +694,6 @@ The following websites were used as the starting point and inspiration for creat
 
 
 
-
-
-
-
----
-
-## Project Management ##
-
-GitHub [Projects](https://github.com/simonjvardy/the-reading-room/projects) are used to organize the planning and development of the website.
-Two GitHub projects are used to manage different aspects of the site development:
-- [Development](https://github.com/simonjvardy/the-reading-room/projects/1)
-  - Manages the project tasks and files.
-- [Bug Fixes](https://github.com/simonjvardy/the-reading-room/projects/2)
-  - Manages the triage and prioritization of the bug fixes.
-
-The Projects are created using the following GitHub templates:
-- `Automated kanban` template for the **Development** project.
-- `Bug Triage` template for the **Bug Fixes** project.
-
-The following kanban project cards are used to manage the tasks:
-- **Backlog** - this card is used to capture ideas for project tasks.
-- **To Do** - this is the current work queue for the project.
-- **In Progress** - this is the list of tasks currently in work.
-    - New issues and pull requests are automatically added to this column using project card automation options.
-- **Testing** - Testing tasks list
-- **Done** - completed tasks
-
-The following Bug Triage template project cards are used to manage the Bux fixes tasks:
-- **Needs Triage** - this card is used to capture new bugs prior to assigning a priority.
-  - A triage card is more appropriate for larger projects than this but left in as this is where all new issues are assigned when linking a project to a new issue.
-- **High Priority** - this is the high priority queue for the project.
-- **Low Priority** - this is the low priority queue for the project.
-- **Closed** - completed tasks.
-
-Markdown syntax is used to create **"To-Do" list** style checkboxes by adding `- [ ]` for an un-ticked checkbox and `- [x]` for a ticked checkbox on cards as a way of splitting a single complex task into a list of steps to be completed.
-
-![GitHub Projects - Development](static/images/github-projects-development.png)
-![GitHub Projects - Bug Fixes](static/images/github-projects-bugfixes.png)
-
-
-[Back to contents](#contents)
-
----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
-
-## Features
-
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
- 
-### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
-
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
 ## Testing
 
