@@ -28,10 +28,9 @@ Here you can find a selection of great book you'll love.
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Additional Site Features](#additional-site-features)
-  - [Site Construction](#site-construction)  
   - [Future Features](#future-features)
-  - [Page Layout](#page-layout)
-  - [Construction Table](#construction-table)
+  - [Site Construction](#site-construction)
+  - [Defensive Programming](#defensive-programming)
   - [Database Design](#database-design)
 - [Project Management](#project-management)
 - [Version Control](#version-control)
@@ -41,24 +40,11 @@ Here you can find a selection of great book you'll love.
     - [Merging branches in GitHub](#merging-branches-in-github)
     - [Update Gitpod with the latest GitHub commits](#update-gitpod-with-the-latest-github-commits)
 - [Testing](#testing)
-- [Bugs](#bugs)
 - [Deployment](#deployment)
-  - [Cloning the-reading-room from GitHub](#cloning-the-reading-room-from-github)
-    - [Prerequisites](#prerequisites)
-    - [Cloning the GitHub repository](#cloning-the-github-repository)
-    - [Creation of a Python Virtual Environment](#creation-of-a-python-virtual-environment)
-    - [Install the App dependencies and external libraries](#install-the-app-dependencies-and-external-libraries)
-    - [Create the database in MongoDB](#create-the-database-in-mongodb)
-    - [Create `env.py` file](#create-env.py-file)
-    - [Run the application](#run-the-application)
-  - [Deploying The Reading Room app to Heroku](#deploying-the-reading-room-app-to-heroku)
-    - [Create the Heroku App](#create-the-heroku-app)
-    - [Push your repository to GitHub](#push-your-repository-to-github)
-    - [Connect Heroku to GitHub](#connect-heroku-to-github)
-    - [Launch the App](#launch-the-app)
+  - [How To Run This Project Locally](#how-to-run-this-project-locally)  
+  - [Deploy To Heroku](#deploy-to-heroku)
 - [Credits](#credits)
   - [Images](#images)
-  - [Colour](#colour)
   - [Inspiration](#inspiration)
   - [Acknowledgements](#acknowledgements)
 
@@ -160,7 +146,6 @@ The final result is slightly different, mostly improved by icons and organic rep
 - [Page of Book Review](wireframe/book-page.png)
 - [Add a Review](wireframe/add-review.png)
 - [Profile](wireframe/profile.png)
-
 
 [Back to contents](#contents)
 
@@ -264,7 +249,25 @@ The final result is slightly different, mostly improved by icons and organic rep
 - Footer
     - Show my name, and that is a link for the GitHub page of this repository.
 
-### Back-end Design ###
+### Additional Site features ###
+
+- Error Handlers. Flask have a function that returns a response when a type of error is raised, in this way we can redirect the user to an Error Page, 
+  that inform about the type of error, what to do or where to go. In the error page is always present a button that redirect to the book reviews page.    
+
+- HTTP **404** Error
+- HTTP **500** Error    
+- HTTP **503** Error     
+
+![HTTP 404 Error](static/images/readme-content/error-404.png)
+
+### Future Features ###
+
+- User comments - add a section for users interaction.
+- Email - message notification of new messages.
+- Upload image as a file - upload the cover image of a book.
+- Superuser functionality over the site.
+
+### Backend Design ###
 
 - The app is created using Python3 and a Flask framework to render the HTML pages.
 - The site is deployed via a Heroku app linked to a GitHub repository.
@@ -279,9 +282,7 @@ The final result is slightly different, mostly improved by icons and organic rep
 - User Logged In    
 ![Topology Logged In](wireframe/topology-user.png)
 
-### **Page Layout** ###
-
-#### **Responsive Navbar** ####
+#### Responsive Navbar ####
 
 - Jinja2 template conditions remove menu items based on the user logged in/out.
 
@@ -342,7 +343,7 @@ The final result is slightly different, mostly improved by icons and organic rep
 - The review button redirect the user to the book page.    
 ![Log In](static/images/readme-content/profile-mobile.png)
 
-### **CRUD Functionality** ###
+#### CRUD Functionality ####
 
 | Site Page | Create | Read | Update | Delete |
 | --- | --- | --- | --- | --- |
@@ -354,7 +355,7 @@ The final result is slightly different, mostly improved by icons and organic rep
 | Log In |  | User details |  |  |
 | Profile |  | User details |  |  |
 
-### User Messages ###
+#### User Messages ####
 
 - Flask flash message are used to feedback user actions:
   - **Success**
@@ -379,24 +380,6 @@ The final result is slightly different, mostly improved by icons and organic rep
     - Using session cookies to validate a specific user data over others data.
   - Functions in Python checks conditional statement and exception in order to handle a variety of wrong events.
     - examples of this include preventing site visitors, who aren't logged in, from just entering a page URL to bypass the login process. This type of exception redirects the user to the login page with a warning flash message.
-
-### Additional Site features ###
-
-- Error Handlers. Flask have a function that returns a response when a type of error is raised, in this way we can redirect the user to an Error Page, 
-  that inform about the type of error, what to do or where to go. It is always present a button that redirect to the book reviews page.    
-
-- HTTP **404** Error
-- HTTP **500** Error    
-- HTTP **503** Error     
-
-![HTTP 404 Error](static/images/readme-content/error-404.png)
-
-### **Future Features** ###
-
-- User comments
-- Email - message notification
-- Upload image as a file
-- Superuser
 
 ### Database Design ###
 
@@ -482,148 +465,76 @@ git clone https://github.com/NicolaLampis/read-district
 ```
 2. If possible open a terminal session in the unzip folder or cd to the correct location.
 
-3. A virtual environment is recommended for the Python interpreter, I recommend using Pythons built in virtual environment. Enter the command:
+3. Create a virtual environment with the command:
 ```
 python -m .venv venv
 ```
 *NOTE: Your Python command may differ, such as python3 or py*
 
-### **Cloning the-reading-room from GitHub** ###
-
-#### Prerequisites ####
-
-Ensure the following are installed locally on your computer:
-- [Python 3.6 or higher](https://www.python.org/download/releases/3.0/)
-- [PIP3](https://pypi.org/project/pip/) Python package installer
-- [Git](https://git-scm.com/) Version Control
-
-
-#### Cloning the GitHub repository ####
-
-
-- Navigate to **simonjvardy/the-reading-room**.
-- Click the **Code** button.
-- **Copy** the url in the dropdown box.
-- Using your favourite **IDE** open up your preferred terminal.
-- **Navigate** to your desired file location.
-
-Copy the following code and input it into your terminal to clone the-reading-room:
-
+4. Activate the **.venv** with the command:
 ```
-git clone https://github.com/simonjvardy/the-reading-room.git
+.venv\Scripts\activate
 ```
+*This command may differ depending on your operating system, please check the [Python Documentation on virtual environments](https://docs.python.org/3/library/venv.html) for further instructions.*
 
-#### Creation of a Python Virtual Environment ####
-
-*Note: The process may be different depending upon your own OS - please follow this [Python help guide](https://python.readthedocs.io/en/latest/library/venv.html)
-to understand how to create a virtual environment*
-
-#### Install the App dependencies and external libraries ####
-
-- In your IDE terminal window, install the dependencies from the requirements.txt file with the following command:
-
+5. Install all required modules with the command:
 ```
-pip3 install -r requirements.txt
+pip -r requirements.txt.
 ```
-
-#### Create the database in MongoDB #####
-
-*Please ensure you have an account created at [MongoDB](https://account.mongodb.com/) in order to build the database*
-
-- In your MongoDB cluster, create a new database called `the-reading-room`
-- Create the following collections within the new database:
-  - [book_review](wireframes/data-schemas/book_review.json)
-  - [genre](wireframes/data-schemas/genre.json)
-  - [users](wireframes/data-schemas/users.json)
-  - [terms_conditions](wireframes/data-schemas/terms_conditions.json)
-  - [privacy](wireframes/data-schemas/privacy.json)
-
-
-#### Create `env.py` file ####
-
-- The `env.py` file should contain at least the following information:
-
+6. Create the `env.py` file.
+- In order to set the default environment variables **env.py** file should contain at least the following information:
 ```
 import os
 
 os.environ.setdefault("IP", "0.0.0.0")
 os.environ.setdefault("PORT", "5000")
-os.environ.setdefault("SECRET_KEY", "YOUR_OWN_SECRET_KEY")
-os.environ.setdefault("MONGO_URI", "YOUR_OWN_MONGODB_URI")
-os.environ.setdefault("MONGO_DBNAME", "YOUR_OWN_MONGODB_DATABASE_NAME")
+os.environ.setdefault("SECRET_KEY", "YOUR_OWN_VALUE")
+os.environ.setdefault("MONGO_URI", "YOUR_OWN_VALUE")
+os.environ.setdefault("MONGO_DBNAME", "YOUR_OWN_VALUE")
 ```
-
-- Please ensure you add in your own `SECRET_KEY`, `MONGO_URI` and `MONGO_DBNAME` values.
+- Replace "YOUR_OWN_VALUE" with the correct values.
 - ***Important:*** Add the `env.py` file to your `.gitignore` file before pushing your files to any public git repository.
+- A .gitignore file specifies intentionally untracked files that Git should ignore. In this way your sensible data remain secret and invisible.
 
-#### Run the application ####
-
-- To run the application enter the following command into the terminal window:
-
+7. You can run the application with the command:
 ```
-python3 app.py
+python app.py
 ```
+8. You can visit the website at http://127.0.0.1:5000
 
-### **Deploying The Reading Room app to Heroku** ###
+#### Create the database in MongoDB #####
+- In your MongoDB cluster, create a new database called `books_db`
+- Create the following collections within the new database:
+  - [reviews](wireframe/data-schemas/reviews.json)  
+  - [users](wireframe/data-schemas/users.json)
 
-#### Create the Heroku App ####
+### Deploy to Heroku ###
 
-*Please ensure you have an account created at [Heroku](https://signup.heroku.com/login) in order to deploy the app*
+1. Create a **requirements.txt** file using the terminal command `pip freeze > requirements.txt`.
 
-- Log in to your Heroku account dashboard and create a new app.
-- Enter the App name. 
-  - This needs to be unique and the-reading-room is already in use so choose a suitable alternative name for your own App.
-- Choose a geographical region closest to where you live.
-  - Options available on a free account are ***United States*** or ***Europe***
+2. Create a **Procfile** with the terminal command `echo web: python app.py > Procfile`.
 
+3. Perform commands `git add` and `git commit` for both requirements and Procfile, ,then `git push` the project to GitHub.
 
-#### Push your repository to GitHub ####
+4. Create a new app on the Heroku website by clicking the "New" button in your dashboard. Give it a name and set the nearest region to you.
 
-- Commit and push your local repository to your GitHub linked repsitory
+5. From the heroku dashboard, click on "Deploy" > "Deployment method" and select GitHub.
 
-- Ensure your local git repository has the following files in the root directory:
+6. Link the heroku app to the correct GitHub repository.
 
-  - Heroku `Procfile`
-  - `requirements.txt`
-
-- If these are not showing in your local Git repository for any reason, enter the following commands in the terminal window:
-
-```
-echo web: python app.py > Procfile
-pip3 freeze --local > requirements.txt
-```
-
-- Stage, commit and push your local Git repository to GitHub
-
-#### Connect Heroku to GitHub ####
-
-- In the Heroku App Settings page, open the section Config Vars
-- Add all the environmant variables from your local `env.py` file into the Heroku Config Vars:
-
+7. In the heroku dashboard, click on "Settings" > "Reveal Config Vars". Insert the following KEY and VALUE:
 
 | Key | Value |
 | --- | --- |
 | IP | 0.0.0.0 |
 | PORT | 5000 |
-| SECRET_KEY | YOUR_OWN_SECRET_KEY |
-| MONGO_URI | YOUR_OWN_MONGODB_URI |
-| MONGO_DBNAME | YOUR_OWN_MONGODB_DATABASE_NAME |
+| SECRET_KEY | **put_your_personal_secret_key** |
+| MONGO_URI | mongodb+srv://root:**your_root_password**@myfirstcluster.iixj3.mongodb.net/**your_database_name**?retryWrites=true&w=majority |
+| MONGO_DBNAME | **put_the_database_name** |
 
+8. Select deploy branch Master.
 
-- In the Heroku App Deploy page: 
-  - Select GitHub from the Deployment Method options.
-  - Select Connect to GitHub.
-  - Log in to your GitHub account from Heroku to link the App to GitHub.
-  - Search for and select the repository to be linked in Github.
-  - Select Connect.
-  - Select Enable Automatic Deployment from the GitHub Master / Main branch
-
-
-#### Launch the App ####
-
-- Click Open App in Heroku to launch the App in a new browser window.
-
-
+9. Click Open App in Heroku to launch the App in a new browser window.
 
 [Back to contents](#contents)
 
@@ -631,110 +542,25 @@ pip3 freeze --local > requirements.txt
 
 ## Credits ##
 
-### **Images** ###
+### Images ###
 
-You can find the images used for the site [here](static/images). I have sourced them through various websites, which are either free to use or used under license:
+- The cover images of the books are stored in the database as URL and are dynamically rendered in the cards.
+- The source of the book images are [Wikipedia](https://www.wikipedia.org/) and [Amazon.com](https://www.amazon.com/)
+- [Dummy image book](static/images/book-not-available.jpg) is hosted in unsplash.com by the artis [Fang-Wei Lin](https://unsplash.com/photos/H1IRUS1vEFA) 
 
-- Welcome Page
-  - The Background [Hero Image](static/images/bookshelf-1920x1080.jpg) was free to use, sourced from [PIXNIO](https://pixnio.com/objects/books/bookcase-books-bookshelves-education-research-school-study) 
+### Inspiration ###
 
-- Book Review
+- Part of the conten for the reviews came from [Wikipedia](https://www.wikipedia.org/) and [Amazon.com](https://www.amazon.com/)
 
+### Acknowledgements ###
 
-All demonstration book review image URLs were sourced from [Waterstones](https://www.waterstones.com/) online bookstore (© Waterstones, 2021. Waterstones Booksellers Limited - All Rights Reserved) from their CDN image delivery URLs and used purely for educational purposes only to demonstrate the app backend CRUD functionality. Please visit [Waterstones](https://www.waterstones.com/) for some fantastic deals on the latest books! 
-
-  - [Silmarillion](https://cdn.waterstones.com/bookjackets/large/9780/0084/9780008433949.jpg)
-  - [Clean Code: A Handbook of Agile Software Craftsmanship](https://cdn.waterstones.com/bookjackets/large/9780/1323/9780132350884.jpg)
-  - [Why We Sleep: The New Science of Sleep and Dreams](https://cdn.waterstones.com/bookjackets/large/9780/1419/9780141983769.jpg)
-  - [Wild: A Journey from Lost to Found](https://cdn.waterstones.com/override/v1/large/9781/7823/9781782394860.jpg)
-  - [The Hunger Games - The Hunger Games 1](https://cdn.waterstones.com/bookjackets/large/9781/4071/9781407132082.jpg)
-  - [White Silence - Elizabeth Cage](https://cdn.waterstones.com/bookjackets/large/9781/4722/9781472264480.jpg)
-  - [The Fear Bubble: Harness Fear and Live without Limits](https://cdn.waterstones.com/bookjackets/large/9780/0081/9780008194680.jpg)
-  - [Harry Potter and the Philosopher's Stone](https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855652.jpg)
-  - [Gangsta Granny](https://cdn.waterstones.com/bookjackets/large/9780/0073/9780007371464.jpg)
-  - [The Martian: Stranded on Mars, one astronaut fights to survive](https://cdn.waterstones.com/override/v3/large/9781/7850/9781785031137.jpg)
-  - [A Promised Land](https://cdn.waterstones.com/override/v4/large/9780/2414/9780241491515.jpg)
-
-
-- 404
-  - The [Error 404 Text Background Image](static/images/bg.jpg) was sourced from [Colorlib](https://colorlib.com/wp/free-404-error-page-templates/) as part of a template licensed under CC BY 3.0
-
-### **Colour** ###
-
-- The colour palette was identified on [Coolors](https://coolors.co/)
-
-
-
-### **Inspiration** ###
-
-The following websites were used as the starting point and inspiration for creating the website:
-
-- [Waterstones]() Online book store for website design inspiration and features as well as URL links to their book pages.
-- [Amazon UK]() Online retailer for website design inspiration and features as well as URL links to their book pages.
-- [Kirkus](https://www.kirkusreviews.com/) Book Review website / blog for design inspiration and content ideas.
-- [Instagram - Duchess Of Cornwall](https://www.instagram.com/duchessofcornwallsreadingroom/?hl=en) Instagram Book Club / Book review site
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Testing
-
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
-
-## Deployment
-
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
-
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
-
-In addition, if it is not obvious, you should also describe how to run your code locally.
-
-
-## Credits
-
-### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
-
-### Media
-- The photos used in this site were obtained from ...
-
-### Acknowledgements
-
-- I received inspiration for this project from X
+- [Nicola Lampis](https://github.com/NicolaLampis) Milestone projects 1/2
+- [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/) Course material, practice code challenges (Task Manager and Thorin Flask apps).
+- [Simon Vardy](https://github.com/simonjvardy) for project inspiration and README.md format ideas.
+- [A Greaves](https://github.com/AJGreaves) for README.md content and format ideas.
+- [Rahul Nanwani](https://blog.imagekit.io/how-to-handle-loading-images-that-may-not-exist-on-your-website-92e6c3c6ea63) code inspiration on how to handle broken images.
+- [Flask Documentation]() lots of resourceful content about templates, staic files and error handlers.
+- [Python.org](https://python.readthedocs.io/en/latest/library/venv.html) Python VENV virtual environments documentation
+- [W3Schools](https://www.w3schools.com/) amazing source of knowledge and tutorials.
+- [Materialize](https://materializecss.com/) how to use components, form and javascript functionality
+- [Gradient generator](https://cssgradient.io/) free tool that lets you create a gradient background for websites.

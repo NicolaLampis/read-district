@@ -1,0 +1,6 @@
+{
+    "_id": "ObjectId()",
+	"username": "String",
+    "password": "String",
+    "email": "String"    
+}

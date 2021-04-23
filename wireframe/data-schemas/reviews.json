@@ -1,0 +1,10 @@
+{
+    "_id": "ObjectId()",	
+	"title": "String",
+	"author": "String",
+	"cover_img": "String",
+	"n_of_pages": "Integer",
+	"text_review": "String",
+	"genre_name": "String",	
+    "created_by": "String"
+}
