@@ -23,6 +23,7 @@ Render the page with all the books reviewed.
 Page visible to all visitors.
 """
 
+
 @app.route("/")
 @app.route("/get_books")
 def get_books():
@@ -33,7 +34,8 @@ def get_books():
     """
     query = request.args.get("query")
     if query:
-        reviews = list(mongo.db.reviews.find({"$text": {"$search": query}}).sort([("_id", -1)]))
+        reviews = list(mongo.db.reviews.find(
+            {"$text": {"$search": query}}).sort([("_id", -1)]))
     else:
         reviews = list(mongo.db.reviews.find().sort([("_id", -1)]))
     return render_template("books.html", reviews=reviews)
@@ -42,6 +44,7 @@ def get_books():
 """
 Search functionality
 """
+
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
@@ -53,6 +56,7 @@ def search():
 """
 Registration of a new user
 """
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -83,6 +87,7 @@ def register():
 """
 Log In functionality
 """
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -118,6 +123,7 @@ def login():
 User profile
 """
 
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     try:
@@ -130,7 +136,8 @@ def profile(username):
         are present in the browser, otherwise redirect to login.
         """
         if session["user"]:
-            return render_template("profile.html", username=username, reviews=reviews)
+            return render_template(
+                "profile.html", username=username, reviews=reviews)
     except Exception:
         flash("Log in first!")
         return redirect(url_for("login"))
@@ -139,6 +146,7 @@ def profile(username):
 """
 Log Out functionality
 """
+
 
 @app.route("/logout")
 def logout():
@@ -151,6 +159,7 @@ def logout():
 """
 Add a new review
 """
+
 
 @app.route("/add_review", methods=["GET", "POST"])
 def add_review():
@@ -185,6 +194,7 @@ def add_review():
 Edit review functionality
 """
 
+
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
     """
@@ -207,7 +217,8 @@ def edit_review(review_id):
                         "genre_name": request.form.get("genre_name"),
                         "created_by": session["user"]
                     }
-                    mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
+                    mongo.db.reviews.update(
+                        {"_id": ObjectId(review_id)}, submit)
                     flash("Review Successfully Updated")
                     return redirect(url_for("get_books"))
                 else:
@@ -224,6 +235,7 @@ def edit_review(review_id):
 """
 Delete review functionality
 """
+
 
 @app.route("/delete_review/<review_id>")
 def delete_review(review_id):
@@ -245,6 +257,7 @@ def delete_review(review_id):
 Render a page with the book information and the review
 """
 
+
 @app.route("/book_page/<review_id>", methods=["GET", "POST"])
 def book_page(review_id):
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
@@ -254,6 +267,7 @@ def book_page(review_id):
 """
 Flask error handlers, an error code trigger an HTTP response
 """
+
 
 @app.errorhandler(404)
 def page_not_found(error):
