@@ -26,6 +26,98 @@ You should also mention in this section any interesting bugs or problems you dis
 If this section grows too long, you may want to split it off into a separate file and link to it from here.
 
 
+## Functional User Test ##
+
+- Navbar:
+    - logo link redirect to books page.
+    - small and medium size screen menu collapse, burger icon trigger the opening of right side navigation menu. Animation works fine.
+    - medium size screen display book icon and logo in the central position.
+    - small size screen display the logo without the left icon.
+    - all screen size, all links work.
+
+- Flash messages:
+    - flash messages are correctly displayed for all screen size and different browsers.
+
+- Footer:
+    - on the bottom of the pages.
+    - on the bottom of error pages.
+    - link open a new tab to mine GitHub.
+    - now is displayed correctly in different browsers.
+
+- Books page:
+    - Cards:
+        - Hover animation correctly displayed.
+        - You can see all the books rendered inside cards in order from the recent added to the first added.
+        - Title, author and genre correctly displayed and truncate to the end of the line.
+        - Broken images are correctly displayed as dummy-image.
+        - Title link led to the correct book page.
+        - Image link led to the correct book page.
+        - Flat round button led to the correct book page. Button wave animation.
+        - If the user is the writer of the review a second orange button shows up with and edit icon. Redirect to book page.
+    - Search bar:
+        - Cancel button clear the search and redirect to the books page. No button wave animation, hover shadow animation.
+        - Search button submit correctly the search and let display the results.
+        - Search empty form, trigger a message because the value is requested.
+        - Fixed bug, after a search action and refresh the page will display the same search.
+    
+- Register:
+    - Flash message 'Registration Successful!'.
+    - Redirect profile page (Jinja2 display text 'No review found').
+    - Form. Username, Password(secret characters) and email are requested input. Fill all input to be able to submit.
+    - Input data are created in the **users** collection in the database.
+
+- Log In:
+    - Flash message 'Welcome, *username*'.    
+    - Form. Username and Password(secret characters) are requested input. Fill all input to be able to submit.
+    - If username is wrong, a flash message shows 'Incorrect Username and/or Password'.
+    - If password is wrong, a flash message shows 'Incorrect Username and/or Password'.
+    - Redirect to profile page if username and password are correct.
+
+- Profile:
+    - Correct profile name displayed.
+    - Cards display all the reviews of this user. If the user have no reviews, instead of cards, a new block display the text 'No review found'.
+    - Title, author and genre correctly displayed and truncate to the end of the line.
+    - Cards hover animation correctly displayed.
+    - Review button redirect to the correct book page. Button wave animation.
+    - Without cookies the app will redirect you to login page.
+
+- Log Out:
+    - Flash message 'You have been logged out'
+    - Redirect to Log In
+    - Navbar shows different navigation links (books, log in and register)
+
+- Book Page with review:
+    - Card display all the informations and text review.
+    - If the user is the writer of the review tow buttons are displayed (Edit/Delete).
+    - Edit button redirect to edit page.
+    - Delete button opens a modal window that ask confirmation of deletion. Correct name of book displayed.
+        - Cancel button closes the modal window without deletion.
+        - Delete button delete the review and the info about the book from the database.
+
+- Delete:
+    - Flash message 'Review Successfully Deleted'.
+    - Redirect to books page.
+
+- Edit book:
+    - All the values of the input form are filled with the courrent data from the correct id object.
+    - Changes are correctly updated in the database.
+    - Form. All the input element are requested input. All input must be filled to be able to submit.
+    - Number input accept only integers, select input accept only one option.
+    - Text input accept a number of characters from 100 to 900. Character counter at the right bottom of input window display correctly the count.
+    - Cancel button redirect to books page.
+    - Submit review upload the changes correctly, redirect to books page and show the flash message 'Review Successfully Updated'.
+
+- Add Review:
+    - 
+
+
+
+
+
+
+
+
+
 During the development of this project, I had the experience of facing some problems, exhaustively testing the functionality of each part of the platform and managed to solve most of the problems that arose before writing this document.
 
 I received help from some family and friends to do the tests on the platform resources and all the problems presented were solved without problems.
