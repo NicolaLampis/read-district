@@ -529,7 +529,7 @@ python app.py
 | IP | 0.0.0.0 |
 | PORT | 5000 |
 | SECRET_KEY | **put_your_personal_secret_key** |
-| MONGO_URI | mongodb+srv://root:**your_root_password**@myfirstcluster.iixj3.mongodb.net/**your_database_name**?retryWrites=true&w=majority |
+| MONGO_URI | mongodb+srv://root: **your_root_password** @myfirstcluster.iixj3.mongodb.net/ **your_database_name** ?retryWrites=true&w=majority |
 | MONGO_DBNAME | **put_the_database_name** |
 
 8. Select deploy branch Master.

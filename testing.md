@@ -113,11 +113,15 @@ Validation tools used to check the validity of the website code.
 
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
 - This validator checks the validity of cascading style sheets (css) and (X)HTML documents with style sheets.
-    - Validation W3C of stylesheet (CSS) for TextArea (CSS versione 3 + SVG). No error found.
+    - Validation W3C of stylesheet (CSS) for TextArea (CSS versione 3 + SVG). No error found for style.css and error.css
 
 - [PEP8 Online validation](http://pep8online.com/checkresult)
 - Validity of Python code against the PEP8 requirements.
     - Check results: No errors.
+
+- [jshint](https://jshint.com/)
+- Detect errors and potential problems in your JavaScript code.
+    - No errors detected.
 
 - [Chrome DevTools Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - An open-source automated tool for improving webpages by running audits for performance, accessibility, progressive web apps, SEO etc.
